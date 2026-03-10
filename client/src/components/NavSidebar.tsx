@@ -6,7 +6,7 @@
 
 import { Menu, X, MapPin, BarChart3, Users, Lightbulb, Map, Target, Phone } from "lucide-react";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/leadhatch-logo_e3190d13.avif";
+const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/leadhatch-logo-transparent_71af9624.png";
 
 const navItems = [
   { id: "hero", label: "Overview", icon: MapPin, num: "00" },
@@ -78,7 +78,8 @@ export default function NavSidebar({ activeSection, isOpen, onToggle }: NavSideb
             <img
               src={LOGO_URL}
               alt="LeadHatch.io"
-              className="h-7 w-auto object-contain"
+              className="h-8 w-auto object-contain max-w-[160px]"
+              style={{ filter: 'drop-shadow(0 0 8px rgba(124,58,255,0.3))' }}
               onError={(e) => {
                 const el = e.target as HTMLImageElement;
                 el.style.display = 'none';

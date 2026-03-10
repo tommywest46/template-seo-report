@@ -5,7 +5,7 @@
 
 import { Phone, Mail, Calendar, ArrowRight, Shield, Clock, TrendingUp, CheckCircle2 } from "lucide-react";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/leadhatch-logo_e3190d13.avif";
+const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/leadhatch-logo-transparent_71af9624.png";
 
 const nextSteps = [
   {
@@ -100,7 +100,8 @@ export default function CTASection() {
                 <img
                   src={LOGO_URL}
                   alt="LeadHatch.io"
-                  className="h-10 w-auto object-contain"
+                  className="h-12 w-auto object-contain max-w-[200px]"
+                  style={{ filter: 'drop-shadow(0 0 10px rgba(124,58,255,0.25))' }}
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
               </div>
@@ -125,7 +126,7 @@ export default function CTASection() {
               {/* CTA buttons */}
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="https://leadhatch.io"
+                  href="https://link.leadhatch.io/widget/booking/38JOacWxj8UgCxcCYIy2"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm text-white transition-all duration-200 hover:scale-105"
@@ -139,7 +140,7 @@ export default function CTASection() {
                   <ArrowRight size={14} />
                 </a>
                 <a
-                  href="mailto:hello@leadhatch.io"
+                  href="mailto:tommy@leadhatch.io"
                   className="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm border border-border text-foreground hover:border-primary hover:text-primary transition-all duration-200"
                   style={{ fontFamily: 'Space Grotesk, sans-serif' }}
                 >
@@ -192,7 +193,7 @@ export default function CTASection() {
             <img
               src={LOGO_URL}
               alt="LeadHatch.io"
-              className="h-6 w-auto object-contain opacity-60"
+              className="h-7 w-auto object-contain opacity-70 max-w-[120px]"
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
             <span className="font-data text-xs">© 2026 LeadHatch.io — Local SEO Intelligence</span>
