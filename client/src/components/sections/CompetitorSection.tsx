@@ -171,8 +171,8 @@ export default function CompetitorSection() {
             Competitor Intelligence
           </h2>
           <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-            Your top 3 competitors for the "Mortgage Broker" keyword in Omaha, NE. Understanding their strengths and 
-            weaknesses reveals exactly where Major Team Mortgage can break through.
+            Your top 3 competitors for the <strong className="text-yellow-400">"Mortgage Broker"</strong> keyword in Omaha, NE. Understanding their strengths and 
+            weaknesses reveals exactly where <strong className="text-white font-semibold">Major Team Mortgage</strong> can break through.
           </p>
         </div>
 
@@ -356,7 +356,7 @@ export default function CompetitorSection() {
                 {/* MTM row */}
                 <tr className="border-b border-primary/20 bg-primary/5">
                   <td className="px-6 py-4">
-                    <div className="font-medium text-primary">Major Team Mortgage</div>
+                    <div className="font-bold text-primary">Major Team Mortgage</div>
                     <div className="text-xs text-muted-foreground">Your Business (Current)</div>
                   </td>
                   <td className="px-4 py-4 text-center font-data text-red-400 font-bold">20+</td>

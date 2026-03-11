@@ -72,8 +72,8 @@ export default function HeatmapSection() {
           Local Ranking Heatmaps
         </h2>
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-          These heatmaps show where Major Team Mortgage ranks across 156 geographic grid points in the Omaha metro area. 
-          Each dot represents a search performed from that location — the number inside indicates the ranking position.
+          These heatmaps show where <strong className="text-white font-semibold">Major Team Mortgage</strong> ranks across <strong className="text-foreground">156 geographic grid points</strong> in the Omaha metro area. 
+          Each dot represents a search performed from that location — the number inside indicates the <strong className="text-primary">ranking position</strong>.
         </p>
       </div>
 
@@ -119,7 +119,7 @@ export default function HeatmapSection() {
               <div className="flex items-center gap-2">
                 <Map size={14} className="text-primary" />
                 <span className="text-xs font-data text-white font-medium">{active.keyword}</span>
-                <span className="text-xs font-data text-white/50">— Major Team Mortgage</span>
+                <span className="text-xs font-data text-white/70 font-semibold">— Major Team Mortgage</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-data text-white/50">{active.date}</span>
@@ -178,8 +178,8 @@ export default function HeatmapSection() {
           <div className="p-4 rounded-xl border border-primary/20" style={{ background: "rgba(124,58,255,0.06)" }}>
             <div className="text-xs font-data text-primary uppercase tracking-wider mb-2">What This Means</div>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              Every day without visibility is lost revenue. Homebuyers searching for mortgage services in Omaha 
-              are being captured by competitors — not Major Team Mortgage.
+              Every day without visibility is <strong className="text-red-400">lost revenue</strong>. Homebuyers searching for mortgage services in Omaha 
+              are being captured by competitors — not <strong className="text-white font-semibold">Major Team Mortgage</strong>.
             </p>
           </div>
         </div>

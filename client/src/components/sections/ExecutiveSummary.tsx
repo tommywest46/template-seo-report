@@ -27,6 +27,7 @@ const findings = [
     bg: "bg-red-500/10",
     border: "border-red-500/20",
     title: "Zero Top-20 Rankings",
+    descriptionJsx: (<>​<strong className="text-white font-semibold">Major Team Mortgage</strong> does not appear in the <strong className="text-red-400">top 20</strong> Google Maps results for any of the <strong className="text-yellow-400">3 tracked keywords</strong> across all <strong className="text-foreground">156 grid points</strong> in the Omaha metro area.</>),
     description: "Major Team Mortgage does not appear in the top 20 Google Maps results for any of the 3 tracked keywords across all 156 grid points in the Omaha metro area.",
   },
   {
@@ -35,6 +36,7 @@ const findings = [
     bg: "bg-orange-500/10",
     border: "border-orange-500/20",
     title: "Invisible to Local Buyers",
+    descriptionJsx: (<>Potential homebuyers searching <strong className="text-yellow-400">'mortgage broker'</strong>, <strong className="text-yellow-400">'mortgage lender'</strong>, or <strong className="text-yellow-400">'loan agency'</strong> in Omaha cannot find <strong className="text-white font-semibold">Major Team Mortgage</strong> in Google Maps — the primary discovery channel for local services.</>),
     description: "Potential homebuyers searching 'mortgage broker', 'mortgage lender', or 'loan agency' in Omaha cannot find Major Team Mortgage in Google Maps — the primary discovery channel for local services.",
   },
   {
@@ -43,6 +45,7 @@ const findings = [
     bg: "bg-yellow-500/10",
     border: "border-yellow-500/20",
     title: "Weak GBP Category Structure",
+    descriptionJsx: (<>The Google Business Profile is missing secondary categories <strong className="text-yellow-400">'Mortgage Lender'</strong> and <strong className="text-yellow-400">'Loan Agency'</strong> — limiting visibility to <strong className="text-red-400">only one keyword cluster</strong> when competitors rank for all three.</>),
     description: "The Google Business Profile is missing secondary categories 'Mortgage Lender' and 'Loan Agency' — limiting visibility to only one keyword cluster when competitors rank for all three.",
   },
   {
@@ -51,6 +54,7 @@ const findings = [
     bg: "bg-primary/10",
     border: "border-primary/20",
     title: "No Topical Authority Website",
+    descriptionJsx: (<>Without a comprehensive website (<strong className="text-primary">40–70 pages</strong>) covering mortgage services, loan types, and Omaha neighborhoods, Google cannot establish topical and geographic relevance for ranking.</>),
     description: "Without a comprehensive website (40–70 pages) covering mortgage services, loan types, and Omaha neighborhoods, Google cannot establish topical and geographic relevance for ranking.",
   },
 ];
@@ -79,8 +83,8 @@ export default function ExecutiveSummary() {
           Executive Summary
         </h2>
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-          This intelligence report analyzes Major Team Mortgage's current local SEO position across the Omaha, Nebraska market. 
-          The data reveals a significant visibility gap — and an equally significant opportunity for rapid growth.
+          This intelligence report analyzes <strong className="text-white font-semibold">Major Team Mortgage</strong>'s current local SEO position across the <strong className="text-foreground">Omaha, Nebraska</strong> market. 
+          The data reveals a <strong className="text-red-400">significant visibility gap</strong> — and an equally significant <strong className="text-accent">opportunity for rapid growth</strong>.
         </p>
       </div>
 
@@ -102,7 +106,7 @@ export default function ExecutiveSummary() {
                   <h3 className={`font-semibold text-base mb-2 ${f.color}`} style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                     {f.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{f.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{(f as any).descriptionJsx ?? f.description}</p>
                 </div>
               </div>
             </div>
@@ -170,8 +174,8 @@ export default function ExecutiveSummary() {
           <div className="text-xs font-data text-primary uppercase tracking-widest mb-2">Key Insight</div>
           <p className="text-foreground text-base font-medium leading-relaxed" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
             The competitor data reveals a clear pattern: businesses with strong topical authority websites and optimized GBP profiles 
-            dominate the western Omaha market. Major Team Mortgage has the same — or greater — potential to own this territory. 
-            The gap is a <span className="text-primary">strategy gap</span>, not a brand gap.
+            dominate the western Omaha market. <strong className="text-white font-semibold">Major Team Mortgage</strong> has the same — or greater — potential to own this territory. 
+            The gap is a <strong className="text-primary">strategy gap</strong>, not a brand gap.
           </p>
         </div>
       </div>

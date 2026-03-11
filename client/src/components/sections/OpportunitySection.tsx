@@ -124,7 +124,7 @@ export default function OpportunitySection() {
           The Opportunity Gap
         </h2>
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-          The data tells a clear story: Major Team Mortgage has the highest opportunity score of any business we've analyzed 
+          The data tells a clear story: <strong className="text-white font-semibold">Major Team Mortgage</strong> has the <strong className="text-accent">highest opportunity score</strong> of any business we've analyzed 
           in the Omaha mortgage market. Every gap is a door waiting to be opened.
         </p>
       </div>
@@ -168,7 +168,7 @@ export default function OpportunitySection() {
             <div className="text-xs font-data text-accent uppercase tracking-widest mb-2">What Success Looks Like</div>
             <p className="text-sm text-foreground font-medium" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               Green dots = top 3 rankings. This is what the map looks like for your competitors in their strongest zones — 
-              and what Major Team Mortgage's map should look like across all of Omaha.
+              and what <strong className="text-white font-semibold">Major Team Mortgage</strong>'s map should look like across <strong className="text-accent">all of Omaha</strong>.
             </p>
           </div>
         </div>

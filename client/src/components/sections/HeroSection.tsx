@@ -90,7 +90,7 @@ export default function HeroSection() {
               </span>
             </div>
             <span className="text-xs font-data text-muted-foreground hidden sm:block">
-              Prepared for Major Team Mortgage
+              Prepared for <strong className="text-white font-semibold">Major Team Mortgage</strong>
             </span>
           </div>
           <div className="flex items-center gap-2 text-xs font-data text-muted-foreground">
@@ -131,8 +131,7 @@ export default function HeroSection() {
           <p
             className={`text-base md:text-lg text-muted-foreground max-w-2xl mb-10 leading-relaxed transition-all duration-700 delay-200 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           >
-            Across <strong className="text-foreground">156 geographic data points</strong> in the Omaha metro area, 
-            Major Team Mortgage ranks <strong className="text-red-400">outside the top 20</strong> for every tracked keyword. 
+            Across <strong className="text-foreground">156 geographic data points</strong> in the Omaha metro area, <strong className="text-white font-bold">Major Team Mortgage</strong> ranks <strong className="text-red-400">outside the top 20</strong> for every tracked keyword across <strong className="text-yellow-400">3 keyword categories</strong>. 
             This report reveals exactly what's happening — and the precise roadmap to dominate your market.
           </p>
 

@@ -57,8 +57,8 @@ export default function CTASection() {
             Ready to Own <span className="gradient-text-purple">Omaha?</span>
           </h2>
           <p className="text-muted-foreground text-base leading-relaxed">
-            The data is clear. The opportunity is massive. The competitors are beatable. 
-            The only question is: how soon do you want to start winning?
+            The data is clear. The opportunity is <strong className="text-accent">massive</strong>. The competitors are <strong className="text-primary">beatable</strong>. 
+            The only question is: how soon do you want <strong className="text-white font-semibold">Major Team Mortgage</strong> to start winning?
           </p>
         </div>
 
@@ -158,9 +158,9 @@ export default function CTASection() {
                   <span className="text-xs font-data text-red-400 uppercase tracking-wider">Urgency Factor</span>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Every month without visibility is estimated revenue lost to competitors. 
-                  The Omaha mortgage market processes thousands of local searches monthly — 
-                  none of which are finding Major Team Mortgage.
+                  Every month without visibility is <strong className="text-red-400">estimated revenue lost</strong> to competitors. 
+                  The Omaha mortgage market processes <strong className="text-foreground">thousands of local searches</strong> monthly — 
+                  none of which are finding <strong className="text-white font-semibold">Major Team Mortgage</strong>.
                 </p>
               </div>
 
@@ -199,7 +199,7 @@ export default function CTASection() {
             <span className="font-data text-xs">© 2026 LeadHatch.io — Local SEO Intelligence</span>
           </div>
           <div className="text-xs font-data text-muted-foreground">
-            Confidential Report — Prepared for Major Team Mortgage, Omaha NE — Mar 10, 2026
+            Confidential Report — Prepared for <strong className="text-white/80">Major Team Mortgage</strong>, Omaha NE — Mar 10, 2026
           </div>
         </div>
       </div>
