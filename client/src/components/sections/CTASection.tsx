@@ -153,7 +153,7 @@ export default function CTASection() {
                   <ArrowRight size={14} />
                 </a>
                 <a
-                  href="mailto:tommy@leadhatch.io"
+                  href="mailto:tommy@themapsguy.io"
                   className="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm border border-border text-foreground hover:border-primary hover:text-primary transition-all duration-200"
                   style={{ fontFamily: 'Outfit, sans-serif' }}
                 >
