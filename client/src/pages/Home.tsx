@@ -15,6 +15,7 @@ import CompetitorSection from "@/components/sections/CompetitorSection";
 import OpportunitySection from "@/components/sections/OpportunitySection";
 import RoadmapSection from "@/components/sections/RoadmapSection";
 import CTASection from "@/components/sections/CTASection";
+import StickyBookingCTA from "@/components/StickyBookingCTA";
 
 const SECTIONS = ["hero", "summary", "heatmaps", "competitors", "opportunity", "roadmap", "cta"];
 
@@ -86,6 +87,7 @@ export default function Home() {
           <CTASection />
         </div>
       </main>
+      <StickyBookingCTA />
     </div>
   );
 }

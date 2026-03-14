@@ -31,7 +31,7 @@ const phases = [
   {
     phase: "Phase 2",
     title: "Website Architecture",
-    timeline: "Month 1–2",
+    timeline: "Week 3–4",
     icon: BarChart3,
     color: "text-yellow-400",
     borderColor: "border-yellow-500/40",
@@ -53,7 +53,7 @@ const phases = [
   {
     phase: "Phase 3",
     title: "Authority Building",
-    timeline: "Month 2–4",
+    timeline: "Ongoing",
     icon: Crown,
     color: "text-accent",
     borderColor: "border-accent/40",
@@ -75,7 +75,7 @@ const phases = [
   {
     phase: "Phase 4",
     title: "Market Dominance",
-    timeline: "Month 4–6",
+    timeline: "Ongoing",
     icon: CheckCircle2,
     color: "text-green-400",
     borderColor: "border-green-500/40",
@@ -214,12 +214,12 @@ export default function RoadmapSection() {
           <div className="flex items-end gap-2 h-24 mb-3">
             {[
               { month: "Now", rank: 20, color: "#ef4444" },
-              { month: "Mo 1", rank: 15, color: "#f97316" },
-              { month: "Mo 2", rank: 10, color: "#eab308" },
-              { month: "Mo 3", rank: 7, color: "#84cc16" },
-              { month: "Mo 4", rank: 4, color: "#22c55e" },
-              { month: "Mo 5", rank: 2, color: "#4ADE80" },
-              { month: "Mo 6", rank: 1, color: "#4ADE80" },
+              { month: "Wk 1–2", rank: 16, color: "#f97316" },
+              { month: "Wk 3–4", rank: 11, color: "#eab308" },
+              { month: "Mo 2", rank: 7, color: "#84cc16" },
+              { month: "Mo 3", rank: 4, color: "#22c55e" },
+              { month: "Mo 4+", rank: 2, color: "#4ADE80" },
+              { month: "Ongoing", rank: 1, color: "#4ADE80" },
             ].map((item, i) => (
               <div key={i} className="flex-1 flex flex-col items-center gap-1">
                 <div className="text-xs font-data font-bold" style={{ color: item.color }}>
@@ -238,7 +238,7 @@ export default function RoadmapSection() {
             ))}
           </div>
           <div className="flex gap-2">
-            {["Now", "Mo 1", "Mo 2", "Mo 3", "Mo 4", "Mo 5", "Mo 6"].map((m) => (
+            {["Now", "Wk 1–2", "Wk 3–4", "Mo 2", "Mo 3", "Mo 4+", "Ongoing"].map((m) => (
               <div key={m} className="flex-1 text-center text-xs font-data text-muted-foreground">{m}</div>
             ))}
           </div>
