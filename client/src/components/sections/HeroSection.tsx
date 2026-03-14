@@ -115,7 +115,7 @@ export default function HeroSection() {
           <div className={`transition-all duration-700 delay-100 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
             <h1
               className="font-bold leading-[1.05] mb-6"
-              style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: 900 }}
+              style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: 800 }}
             >
               <span className="text-foreground block">Your Business Is</span>
               <span className="block" style={{
