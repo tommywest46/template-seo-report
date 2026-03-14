@@ -255,7 +255,7 @@ export const PROSPECT = {
   agency: {
     name: "The Maps Guy",
     email: "tommy@themapsguy.io",
-    bookingUrl: "https://link.leadhatch.io/widget/booking/38JOacWxj8UgCxcCYIy2",
+    bookingUrl: "https://link.leadhatch.io/widget/booking/SYOyNfeGUKUmzSsIDbLF",
     logoUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/themapsguy-logo_bbd25d09.png",
   },
 };
