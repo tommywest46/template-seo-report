@@ -7,14 +7,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AlertTriangle, Calendar, ChevronDown } from "lucide-react";
+import { PROSPECT } from "@/lib/prospect-data";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/hero-bg-7aHuMzzvfawGLf2ZspRw8n.webp";
 
 const metrics = [
-  { label: "Keywords Tracked", value: 3, suffix: "", color: "#4ADE80", glow: "rgba(74,222,128,0.4)" },
+  { label: "Keywords Tracked", value: PROSPECT.heatmaps.length, suffix: "", color: "#4ADE80", glow: "rgba(74,222,128,0.4)" },
   { label: "Avg. Map Ranking", value: 20, suffix: "+", color: "#ef4444", glow: "rgba(239,68,68,0.4)" },
-  { label: "Grid Points Analyzed", value: 156, suffix: "", color: "#FBBF24", glow: "rgba(251,191,36,0.4)" },
-  { label: "Opportunity Score", value: 97, suffix: "%", color: "#4ADE80", glow: "rgba(74,222,128,0.4)" },
+  { label: "Grid Points Analyzed", value: PROSPECT.heatmaps[0]?.gridPoints ?? 156, suffix: "", color: "#FBBF24", glow: "rgba(251,191,36,0.4)" },
+  { label: "Opportunity Score", value: PROSPECT.opportunityScores.overall, suffix: "%", color: "#4ADE80", glow: "rgba(74,222,128,0.4)" },
 ];
 
 function CountUp({ target, duration = 1800 }: { target: number; duration?: number }) {
@@ -91,12 +92,12 @@ export default function HeroSection() {
               </span>
             </div>
             <span className="text-xs font-data text-muted-foreground hidden sm:block">
-              Prepared for <strong className="text-white font-semibold">Major Team Mortgage</strong>
+              Prepared for <strong className="text-white font-semibold">{PROSPECT.name}</strong>
             </span>
           </div>
           <div className="flex items-center gap-2 text-xs font-data text-muted-foreground">
             <Calendar size={11} />
-            <span>Mar 10, 2026</span>
+            <span>{PROSPECT.reportDate}</span>
           </div>
         </div>
 
@@ -107,7 +108,7 @@ export default function HeroSection() {
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/40 bg-red-500/10 text-red-400 text-sm font-medium mb-8 w-fit transition-all duration-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           >
             <AlertTriangle size={13} />
-            <span>Critical Visibility Gap Detected — Omaha, NE</span>
+            <span>Critical Visibility Gap Detected — {PROSPECT.cityState}</span>
           </div>
 
           {/* Headline */}
@@ -133,7 +134,7 @@ export default function HeroSection() {
             className={`text-base md:text-lg text-muted-foreground max-w-2xl mb-10 leading-relaxed transition-all duration-700 delay-200 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           style={{ fontFamily: 'Nunito Sans, sans-serif' }}
           >
-            Across <strong className="text-foreground">156 geographic data points</strong> in the Omaha metro area, <strong className="text-white font-bold">Major Team Mortgage</strong> ranks <strong className="text-red-400">outside the top 20</strong> for every tracked keyword across <strong className="text-yellow-400">3 keyword categories</strong>. 
+            Across <strong className="text-foreground">{PROSPECT.heatmaps[0]?.gridPoints ?? 156} geographic data points</strong> in the {PROSPECT.city} metro area, <strong className="text-white font-bold">{PROSPECT.name}</strong> ranks <strong className="text-red-400">outside the top 20</strong> for every tracked keyword across <strong className="text-yellow-400">{PROSPECT.heatmaps.length} keyword categories</strong>. 
             This report reveals exactly what's happening — and the precise roadmap to dominate your market.
           </p>
 

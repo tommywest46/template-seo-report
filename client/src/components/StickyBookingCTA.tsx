@@ -5,8 +5,7 @@
 
 import { useEffect, useState } from "react";
 import { Calendar, ArrowRight, X } from "lucide-react";
-
-const BOOKING_URL = "https://link.leadhatch.io/widget/booking/38JOacWxj8UgCxcCYIy2";
+import { PROSPECT } from "@/lib/prospect-data";
 
 export default function StickyBookingCTA() {
   const [visible, setVisible] = useState(false);
@@ -65,7 +64,7 @@ export default function StickyBookingCTA() {
           </div>
           <div className="min-w-0">
             <p className="text-sm font-semibold text-white leading-tight" style={{ fontFamily: "Outfit, sans-serif" }}>
-              Ready to dominate Omaha's Google Maps results?
+              Ready to dominate {PROSPECT.city}'s Google Maps results?
             </p>
             <p className="text-xs text-muted-foreground hidden sm:block" style={{ fontFamily: "Nunito Sans, sans-serif" }}>
               Book a free 30-min strategy call — no obligation, just clarity.
@@ -76,7 +75,7 @@ export default function StickyBookingCTA() {
         {/* Right: CTA button + dismiss */}
         <div className="flex items-center gap-3 flex-shrink-0">
           <a
-            href={BOOKING_URL}
+            href={PROSPECT.agency.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm text-black transition-all duration-200 hover:scale-105 hover:shadow-lg"

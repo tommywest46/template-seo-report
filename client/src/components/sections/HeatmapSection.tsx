@@ -5,46 +5,19 @@
 
 import { useState } from "react";
 import { Map, Info, ChevronRight } from "lucide-react";
+import { PROSPECT } from "@/lib/prospect-data";
 
-const MTM_BROKER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/MTM-Mortgage-Broker_603c3cf9.png";
-const MTM_LENDER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/MTM-Mortgage-Lender_3b1c360a.png";
-const MTM_LOAN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/MTM-Loan-Agency_fd690f6d.png";
-
-const heatmaps = [
-  {
-    id: "broker",
-    keyword: "Mortgage Broker",
-    image: MTM_BROKER,
-    date: "Mar 10, 2026",
-    gridPoints: 156,
-    topRankings: 0,
-    avgRank: "20+",
-    insight: "Zero visibility across the entire Omaha metro. The business does not appear in the top 20 results for this primary keyword at any of the 156 tracked grid points.",
-    severity: "critical",
-  },
-  {
-    id: "lender",
-    keyword: "Mortgage Lender",
-    image: MTM_LENDER,
-    date: "Mar 10, 2026",
-    gridPoints: 156,
-    topRankings: 0,
-    avgRank: "20+",
-    insight: "Complete absence from 'Mortgage Lender' searches — a high-intent keyword that directly matches buyer intent. Adding this as a primary GBP category would immediately expand potential visibility.",
-    severity: "critical",
-  },
-  {
-    id: "loan",
-    keyword: "Loan Agency",
-    image: MTM_LOAN,
-    date: "Mar 10, 2026",
-    gridPoints: 156,
-    topRankings: 0,
-    avgRank: "20+",
-    insight: "The 'Loan Agency' keyword shows the same pattern. This secondary category represents an untapped opportunity — competitors who rank here capture buyers at the top of the funnel.",
-    severity: "critical",
-  },
-];
+const heatmaps = PROSPECT.heatmaps.map(h => ({
+  id: h.id,
+  keyword: h.keyword,
+  image: h.imageUrl,
+  date: h.date,
+  gridPoints: h.gridPoints,
+  topRankings: h.rankingTop3,
+  avgRank: h.rankingTop3 > 0 ? String(h.rankingTop3) : "20+",
+  insight: h.insight,
+  severity: h.status.toLowerCase(),
+}));
 
 const colorLegend = [
   { color: "#22c55e", label: "#1–3", desc: "Top 3 (Prime visibility)" },
@@ -72,7 +45,7 @@ export default function HeatmapSection() {
           Local Ranking Heatmaps
         </h2>
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-          These heatmaps show where <strong className="text-white font-semibold">Major Team Mortgage</strong> ranks across <strong className="text-foreground">156 geographic grid points</strong> in the Omaha metro area. 
+          These heatmaps show where <strong className="text-white font-semibold">{PROSPECT.name}</strong> ranks across <strong className="text-foreground">{PROSPECT.heatmaps[0]?.gridPoints} geographic grid points</strong> in the {PROSPECT.city} metro area. 
           Each dot represents a search performed from that location — the number inside indicates the <strong className="text-primary">ranking position</strong>.
         </p>
       </div>

@@ -5,6 +5,7 @@
 
 import { useState } from "react";
 import { Users, Star, AlertTriangle, CheckCircle, XCircle, Globe, MapPin, TrendingUp } from "lucide-react";
+import { PROSPECT } from "@/lib/prospect-data";
 
 const SHOTBOLT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/Shotbolt-Mortgage_710566b1.png";
 const SPECIALISTS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/Mortage-Specialists_41958130.png";
@@ -171,8 +172,8 @@ export default function CompetitorSection() {
             Competitor Intelligence
           </h2>
           <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-            Your top 3 competitors for the <strong className="text-yellow-400">"Mortgage Broker"</strong> keyword in Omaha, NE. Understanding their strengths and 
-            weaknesses reveals exactly where <strong className="text-white font-semibold">Major Team Mortgage</strong> can break through.
+            Your top 3 competitors for the <strong className="text-yellow-400">"{PROSPECT.heatmaps[0]?.keyword}"</strong> keyword in {PROSPECT.cityState}. Understanding their strengths and 
+            weaknesses reveals exactly where <strong className="text-white font-semibold">{PROSPECT.name}</strong> can break through.
           </p>
         </div>
 

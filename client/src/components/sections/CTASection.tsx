@@ -6,8 +6,7 @@
  */
 
 import { Mail, Calendar, ArrowRight, Shield, Clock, TrendingUp, CheckCircle2 } from "lucide-react";
-
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/themapsguy-logo_bbd25d09.png";
+import { PROSPECT } from "@/lib/prospect-data";
 
 const nextSteps = [
   {
@@ -56,11 +55,11 @@ export default function CTASection() {
             <div className="h-px w-12" style={{ background: "linear-gradient(90deg, rgba(74,222,128,0.6), transparent)" }} />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}>
-            Ready to Own <span className="gradient-text-purple">Omaha?</span>
+            Ready to Own <span className="gradient-text-purple">{PROSPECT.city}?</span>
           </h2>
           <p className="text-muted-foreground text-base leading-relaxed" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>
             The data is clear. The opportunity is <strong className="text-accent">massive</strong>. The competitors are <strong className="text-primary">beatable</strong>. 
-            The only question is: how soon do you want <strong className="text-white font-bold">Major Team Mortgage</strong> to start winning?
+            The only question is: how soon do you want <strong className="text-white font-bold">{PROSPECT.name}</strong> to start winning?
           </p>
         </div>
 
@@ -100,8 +99,8 @@ export default function CTASection() {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <img
-                  src={LOGO_URL}
-                  alt="The Maps Guy"
+                  src={PROSPECT.agency.logoUrl}
+                  alt={PROSPECT.agency.name}
                   className="h-12 w-auto object-contain max-w-[220px]"
                   style={{ filter: 'drop-shadow(0 0 8px rgba(74,222,128,0.2))' }}
                   onError={(e) => {
@@ -110,7 +109,7 @@ export default function CTASection() {
                     const parent = el.parentElement;
                     if (parent) {
                       const text = document.createElement('span');
-                      text.textContent = 'The Maps Guy';
+                      text.textContent = PROSPECT.agency.name;
                       text.style.cssText = 'font-family: Outfit, sans-serif; font-weight: 900; font-size: 22px; color: #4ADE80;';
                       parent.appendChild(text);
                     }
@@ -138,7 +137,7 @@ export default function CTASection() {
               {/* CTA buttons */}
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="https://link.leadhatch.io/widget/booking/38JOacWxj8UgCxcCYIy2"
+                  href={PROSPECT.agency.bookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-sm transition-all duration-200 hover:scale-105"
@@ -153,7 +152,7 @@ export default function CTASection() {
                   <ArrowRight size={14} />
                 </a>
                 <a
-                  href="mailto:tommy@themapsguy.io"
+                  href={`mailto:${PROSPECT.agency.email}`}
                   className="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm border border-border text-foreground hover:border-primary hover:text-primary transition-all duration-200"
                   style={{ fontFamily: 'Outfit, sans-serif' }}
                 >
@@ -172,14 +171,14 @@ export default function CTASection() {
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>
                   Every month without visibility is <strong className="text-red-400">estimated revenue lost</strong> to competitors. 
-                  The Omaha mortgage market processes <strong className="text-foreground">thousands of local searches</strong> monthly — 
-                  none of which are finding <strong className="text-white font-bold">Major Team Mortgage</strong>.
+                  The {PROSPECT.city} {PROSPECT.industry} market processes <strong className="text-foreground">thousands of local searches</strong> monthly — 
+                  none of which are finding <strong className="text-white font-bold">{PROSPECT.name}</strong>.
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-4 rounded-xl bg-black/30 border border-border text-center">
-                  <div className="text-2xl font-bold font-data text-primary">97%</div>
+                  <div className="text-2xl font-bold font-data text-primary">{PROSPECT.opportunityScores.overall}%</div>
                   <div className="text-xs text-muted-foreground mt-1">Opportunity Score</div>
                 </div>
                 <div className="p-4 rounded-xl bg-black/30 border border-border text-center">
@@ -204,15 +203,15 @@ export default function CTASection() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-3">
             <img
-              src={LOGO_URL}
-              alt="The Maps Guy"
+              src={PROSPECT.agency.logoUrl}
+              alt={PROSPECT.agency.name}
               className="h-7 w-auto object-contain opacity-80 max-w-[140px]"
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
-            <span className="font-data text-xs">© 2026 The Maps Guy — Local SEO Intelligence</span>
+            <span className="font-data text-xs">© 2026 {PROSPECT.agency.name} — Local SEO Intelligence</span>
           </div>
           <div className="text-xs font-data text-muted-foreground">
-            Confidential Report — Prepared for <strong className="text-white/80">Major Team Mortgage</strong>, Omaha NE — Mar 10, 2026
+            Confidential Report — Prepared for <strong className="text-white/80">{PROSPECT.name}</strong>, {PROSPECT.cityState} — {PROSPECT.reportDate}
           </div>
         </div>
       </div>

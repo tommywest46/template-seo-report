@@ -5,6 +5,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Zap, Target, Globe, Building2, FileText, Link2, Star, TrendingUp } from "lucide-react";
+import { PROSPECT } from "@/lib/prospect-data";
 
 const MAP_OVERLAY = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/map-overlay-BrP5b8rCVrYs8dBefwVDdE.webp";
 
@@ -101,12 +102,12 @@ const websiteOpportunities = [
 ];
 
 const opportunityScores = [
-  { label: "GBP Category Gap", score: 95, color: "#ef4444" },
-  { label: "Website Content Gap", score: 98, color: "#ef4444" },
-  { label: "Internal Linking Gap", score: 100, color: "#ef4444" },
-  { label: "Geographic Coverage Gap", score: 97, color: "#ef4444" },
-  { label: "Topical Authority Gap", score: 96, color: "#ef4444" },
-  { label: "Competitor Vulnerability", score: 82, color: "#f97316" },
+  { label: "GBP Category Gap", score: PROSPECT.opportunityScores.gbpCategoryGap, color: "#ef4444" },
+  { label: "Website Content Gap", score: PROSPECT.opportunityScores.websiteContentGap, color: "#ef4444" },
+  { label: "Internal Linking Gap", score: PROSPECT.opportunityScores.internalLinkingGap, color: "#ef4444" },
+  { label: "Geographic Coverage Gap", score: PROSPECT.opportunityScores.geographicCoverageGap, color: "#ef4444" },
+  { label: "Topical Authority Gap", score: PROSPECT.opportunityScores.topicalAuthorityGap, color: "#ef4444" },
+  { label: "Competitor Vulnerability", score: PROSPECT.opportunityScores.competitorVulnerability, color: "#f97316" },
 ];
 
 export default function OpportunitySection() {
@@ -124,8 +125,8 @@ export default function OpportunitySection() {
           The Opportunity Gap
         </h2>
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-          The data tells a clear story: <strong className="text-white font-semibold">Major Team Mortgage</strong> has the <strong className="text-accent">highest opportunity score</strong> of any business we've analyzed 
-          in the Omaha mortgage market. Every gap is a door waiting to be opened.
+          The data tells a clear story: <strong className="text-white font-semibold">{PROSPECT.name}</strong> has the <strong className="text-accent">highest opportunity score</strong> of any business we've analyzed 
+          in the {PROSPECT.city} {PROSPECT.industry} market. Every gap is a door waiting to be opened.
         </p>
       </div>
 
@@ -152,7 +153,7 @@ export default function OpportunitySection() {
           <div className="mt-6 pt-4 border-t border-border">
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">Overall Opportunity Score</span>
-              <span className="text-2xl font-bold font-data text-accent">97%</span>
+              <span className="text-2xl font-bold font-data text-accent">{PROSPECT.opportunityScores.overall}%</span>
             </div>
             <p className="text-xs text-muted-foreground mt-2">
               Higher score = more room to grow. This is exceptionally high.
@@ -168,7 +169,7 @@ export default function OpportunitySection() {
             <div className="text-xs font-data text-accent uppercase tracking-widest mb-2">What Success Looks Like</div>
             <p className="text-sm text-foreground font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Green dots = top 3 rankings. This is what the map looks like for your competitors in their strongest zones — 
-              and what <strong className="text-white font-semibold">Major Team Mortgage</strong>'s map should look like across <strong className="text-accent">all of Omaha</strong>.
+              and what <strong className="text-white font-semibold">{PROSPECT.name}</strong>'s map should look like across <strong className="text-accent">all of {PROSPECT.city}</strong>.
             </p>
           </div>
         </div>

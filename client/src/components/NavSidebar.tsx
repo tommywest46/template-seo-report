@@ -6,8 +6,9 @@
  */
 
 import { Menu, X, MapPin, BarChart3, Users, Lightbulb, Map, Target, Phone } from "lucide-react";
+import { PROSPECT } from "@/lib/prospect-data";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/themapsguy-logo_bbd25d09.png";
+const LOGO_URL = PROSPECT.agency.logoUrl;
 
 const navItems = [
   { id: "hero", label: "Overview", icon: MapPin, num: "00" },
@@ -99,11 +100,11 @@ export default function NavSidebar({ activeSection, isOpen, onToggle }: NavSideb
           <div className="p-3 rounded-xl" style={{ background: "rgba(74,222,128,0.06)", border: "1px solid rgba(74,222,128,0.12)" }}>
             <div className="text-xs font-data text-muted-foreground uppercase tracking-widest mb-1.5">Intelligence Report</div>
             <div className="text-sm font-semibold text-foreground" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Major Team Mortgage
+              {PROSPECT.name}
             </div>
             <div className="flex items-center gap-1.5 mt-1">
               <MapPin size={10} className="text-primary" />
-              <span className="text-xs text-muted-foreground">Omaha, NE</span>
+              <span className="text-xs text-muted-foreground">{PROSPECT.cityState}</span>
             </div>
           </div>
         </div>
@@ -112,7 +113,7 @@ export default function NavSidebar({ activeSection, isOpen, onToggle }: NavSideb
         <div className="px-5 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
           <div className="flex items-center justify-between text-xs mb-1.5">
             <span className="text-muted-foreground font-data">DATE</span>
-            <span className="text-foreground font-data">Mar 10, 2026</span>
+            <span className="text-foreground font-data">{PROSPECT.reportDate}</span>
           </div>
           <div className="flex items-center justify-between text-xs">
             <span className="text-muted-foreground font-data">STATUS</span>

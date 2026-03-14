@@ -5,6 +5,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { TrendingDown, Eye, Search, Globe, AlertCircle, CheckCircle2 } from "lucide-react";
+import { PROSPECT } from "@/lib/prospect-data";
 
 function useInView(threshold = 0.2) {
   const ref = useRef<HTMLDivElement>(null);
@@ -27,8 +28,8 @@ const findings = [
     bg: "bg-red-500/10",
     border: "border-red-500/20",
     title: "Zero Top-20 Rankings",
-    descriptionJsx: (<>​<strong className="text-white font-semibold">Major Team Mortgage</strong> does not appear in the <strong className="text-red-400">top 20</strong> Google Maps results for any of the <strong className="text-yellow-400">3 tracked keywords</strong> across all <strong className="text-foreground">156 grid points</strong> in the Omaha metro area.</>),
-    description: "Major Team Mortgage does not appear in the top 20 Google Maps results for any of the 3 tracked keywords across all 156 grid points in the Omaha metro area.",
+    descriptionJsx: (<><strong className="text-white font-semibold">{PROSPECT.name}</strong> does not appear in the <strong className="text-red-400">top 20</strong> Google Maps results for any of the <strong className="text-yellow-400">{PROSPECT.heatmaps.length} tracked keywords</strong> across all <strong className="text-foreground">{PROSPECT.heatmaps[0]?.gridPoints} grid points</strong> in the {PROSPECT.city} metro area.</>),
+    description: `${PROSPECT.name} does not appear in the top 20 Google Maps results for any of the ${PROSPECT.heatmaps.length} tracked keywords across all ${PROSPECT.heatmaps[0]?.gridPoints} grid points in the ${PROSPECT.city} metro area.`,
   },
   {
     icon: Eye,
@@ -36,8 +37,8 @@ const findings = [
     bg: "bg-orange-500/10",
     border: "border-orange-500/20",
     title: "Invisible to Local Buyers",
-    descriptionJsx: (<>Potential homebuyers searching <strong className="text-yellow-400">'mortgage broker'</strong>, <strong className="text-yellow-400">'mortgage lender'</strong>, or <strong className="text-yellow-400">'loan agency'</strong> in Omaha cannot find <strong className="text-white font-semibold">Major Team Mortgage</strong> in Google Maps — the primary discovery channel for local services.</>),
-    description: "Potential homebuyers searching 'mortgage broker', 'mortgage lender', or 'loan agency' in Omaha cannot find Major Team Mortgage in Google Maps — the primary discovery channel for local services.",
+    descriptionJsx: (<>Potential customers searching {PROSPECT.heatmaps.map((h, i) => (<span key={i}><strong className="text-yellow-400">'{h.keyword.toLowerCase()}'</strong>{i < PROSPECT.heatmaps.length - 1 ? ', ' : ''}</span>))} in {PROSPECT.city} cannot find <strong className="text-white font-semibold">{PROSPECT.name}</strong> in Google Maps — the primary discovery channel for local services.</>),
+    description: `Potential customers cannot find ${PROSPECT.name} in Google Maps for any tracked keyword in ${PROSPECT.city}.`,
   },
   {
     icon: Search,
@@ -54,15 +55,15 @@ const findings = [
     bg: "bg-primary/10",
     border: "border-primary/20",
     title: "No Topical Authority Website",
-    descriptionJsx: (<>Without a comprehensive website (<strong className="text-primary">40–70 pages</strong>) covering mortgage services, loan types, and Omaha neighborhoods, Google cannot establish topical and geographic relevance for ranking.</>),
-    description: "Without a comprehensive website (40–70 pages) covering mortgage services, loan types, and Omaha neighborhoods, Google cannot establish topical and geographic relevance for ranking.",
+    descriptionJsx: (<>Without a comprehensive website (<strong className="text-primary">{PROSPECT.websiteStrategy.targetPageCount} pages</strong>) covering services, loan types, and {PROSPECT.city} neighborhoods, Google cannot establish topical and geographic relevance for ranking.</>),
+    description: `Without a comprehensive website (${PROSPECT.websiteStrategy.targetPageCount} pages) covering services and ${PROSPECT.city} neighborhoods, Google cannot establish topical relevance.`,
   },
 ];
 
 const opportunities = [
-  "Add 'Mortgage Lender' and 'Loan Agency' as secondary GBP categories",
+  `Add '${PROSPECT.heatmaps[1]?.keyword}' and '${PROSPECT.heatmaps[2]?.keyword}' as secondary GBP categories`,
   "Build comprehensive service list with detailed descriptions in GBP",
-  "Create a 40–70 page website with strong topical + geographic relevance",
+  `Create a ${PROSPECT.websiteStrategy.targetPageCount} page website with strong topical + geographic relevance`,
   "Implement internal linking structure across all service and location pages",
   "Optimize GBP with complete Q&A, posts, and photo strategy",
   "Build citation consistency across 50+ local directories",
@@ -83,7 +84,7 @@ export default function ExecutiveSummary() {
           Executive Summary
         </h2>
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-          This intelligence report analyzes <strong className="text-white font-semibold">Major Team Mortgage</strong>'s current local SEO position across the <strong className="text-foreground">Omaha, Nebraska</strong> market. 
+          This intelligence report analyzes <strong className="text-white font-semibold">{PROSPECT.name}</strong>'s current local SEO position across the <strong className="text-foreground">{PROSPECT.cityState}</strong> market. 
           The data reveals a <strong className="text-red-400">significant visibility gap</strong> — and an equally significant <strong className="text-accent">opportunity for rapid growth</strong>.
         </p>
       </div>
@@ -174,7 +175,7 @@ export default function ExecutiveSummary() {
           <div className="text-xs font-data text-primary uppercase tracking-widest mb-2">Key Insight</div>
           <p className="text-foreground text-base font-medium leading-relaxed" style={{ fontFamily: 'Nunito Sans, sans-serif', fontWeight: 600 }}>
             The competitor data reveals a clear pattern: businesses with strong topical authority websites and optimized GBP profiles 
-            dominate the western Omaha market. <strong className="text-white font-semibold">Major Team Mortgage</strong> has the same — or greater — potential to own this territory. 
+            dominate the {PROSPECT.city} market. <strong className="text-white font-semibold">{PROSPECT.name}</strong> has the same — or greater — potential to own this territory. 
             The gap is a <strong className="text-primary">strategy gap</strong>, not a brand gap.
           </p>
         </div>
