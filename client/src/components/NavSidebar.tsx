@@ -1,12 +1,13 @@
 /**
- * DESIGN: Dark Intelligence / Command Center
+ * DESIGN: The Maps Guy — Dark Intelligence Report
  * Sticky left sidebar with section navigation and progress
- * Background: #070710, Primary: #7C3AFF, Accent: #00E5A0
+ * Background: #0B0F1A (Deep Navy), Primary: #4ADE80 (Brand Green), Accent: #FBBF24 (Signal Gold)
+ * Fonts: Outfit (headings), Nunito Sans (body), JetBrains Mono (data)
  */
 
 import { Menu, X, MapPin, BarChart3, Users, Lightbulb, Map, Target, Phone } from "lucide-react";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/leadhatch-logo-transparent_71af9624.png";
+const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/themapsguy-logo_bbd25d09.png";
 
 const navItems = [
   { id: "hero", label: "Overview", icon: MapPin, num: "00" },
@@ -43,9 +44,9 @@ export default function NavSidebar({ activeSection, isOpen, onToggle }: NavSideb
         onClick={onToggle}
         className="fixed top-4 left-4 z-50 lg:hidden p-2.5 rounded-xl text-foreground transition-all duration-200 hover:scale-105"
         style={{
-          background: "rgba(15,15,26,0.95)",
-          border: "1px solid rgba(124,58,255,0.3)",
-          boxShadow: "0 0 12px rgba(124,58,255,0.2)",
+          background: "rgba(11,15,26,0.95)",
+          border: "1px solid rgba(74,222,128,0.3)",
+          boxShadow: "0 0 12px rgba(74,222,128,0.15)",
         }}
         aria-label="Toggle navigation"
       >
@@ -67,8 +68,8 @@ export default function NavSidebar({ activeSection, isOpen, onToggle }: NavSideb
           transition-transform duration-300 ease-in-out
           ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
         style={{
-          background: "linear-gradient(180deg, #070710 0%, #0A0A18 100%)",
-          borderRight: "1px solid rgba(124,58,255,0.12)",
+          background: "linear-gradient(180deg, #0B0F1A 0%, #0D1220 100%)",
+          borderRight: "1px solid rgba(74,222,128,0.1)",
           boxShadow: "4px 0 24px rgba(0,0,0,0.5)",
         }}
       >
@@ -77,17 +78,17 @@ export default function NavSidebar({ activeSection, isOpen, onToggle }: NavSideb
           <div className="flex items-center gap-2 mb-4">
             <img
               src={LOGO_URL}
-              alt="LeadHatch.io"
-              className="h-8 w-auto object-contain max-w-[160px]"
-              style={{ filter: 'drop-shadow(0 0 8px rgba(124,58,255,0.3))' }}
+              alt="The Maps Guy"
+              className="h-9 w-auto object-contain max-w-[180px]"
+              style={{ filter: 'drop-shadow(0 0 6px rgba(74,222,128,0.25))' }}
               onError={(e) => {
                 const el = e.target as HTMLImageElement;
                 el.style.display = 'none';
                 const parent = el.parentElement;
                 if (parent) {
                   const text = document.createElement('span');
-                  text.textContent = 'LeadHatch.io';
-                  text.style.cssText = 'font-family: Space Grotesk, sans-serif; font-weight: 700; font-size: 16px; background: linear-gradient(135deg, #7C3AFF, #A855F7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;';
+                  text.textContent = 'The Maps Guy';
+                  text.style.cssText = 'font-family: Outfit, sans-serif; font-weight: 900; font-size: 16px; color: #4ADE80;';
                   parent.appendChild(text);
                 }
               }}
@@ -95,9 +96,9 @@ export default function NavSidebar({ activeSection, isOpen, onToggle }: NavSideb
           </div>
           
           {/* Client info */}
-          <div className="p-3 rounded-xl" style={{ background: "rgba(124,58,255,0.08)", border: "1px solid rgba(124,58,255,0.15)" }}>
+          <div className="p-3 rounded-xl" style={{ background: "rgba(74,222,128,0.06)", border: "1px solid rgba(74,222,128,0.12)" }}>
             <div className="text-xs font-data text-muted-foreground uppercase tracking-widest mb-1.5">Intelligence Report</div>
-            <div className="text-sm font-semibold text-foreground" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <div className="text-sm font-semibold text-foreground" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Major Team Mortgage
             </div>
             <div className="flex items-center gap-1.5 mt-1">
@@ -116,8 +117,8 @@ export default function NavSidebar({ activeSection, isOpen, onToggle }: NavSideb
           <div className="flex items-center justify-between text-xs">
             <span className="text-muted-foreground font-data">STATUS</span>
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-green-400 font-data text-xs">LIVE DATA</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <span className="text-primary font-data text-xs">LIVE DATA</span>
             </span>
           </div>
         </div>
@@ -133,8 +134,8 @@ export default function NavSidebar({ activeSection, isOpen, onToggle }: NavSideb
               className="h-full rounded-full transition-all duration-500"
               style={{
                 width: `${progress}%`,
-                background: "linear-gradient(90deg, #7C3AFF, #00E5A0)",
-                boxShadow: "0 0 8px rgba(124,58,255,0.5)",
+                background: "linear-gradient(90deg, #4ADE80, #FBBF24)",
+                boxShadow: "0 0 8px rgba(74,222,128,0.4)",
               }}
             />
           </div>
@@ -154,26 +155,26 @@ export default function NavSidebar({ activeSection, isOpen, onToggle }: NavSideb
                     onClick={() => scrollTo(item.id)}
                     className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 text-left group"
                     style={{
-                      background: isActive ? "rgba(124,58,255,0.12)" : "transparent",
-                      border: isActive ? "1px solid rgba(124,58,255,0.25)" : "1px solid transparent",
+                      background: isActive ? "rgba(74,222,128,0.1)" : "transparent",
+                      border: isActive ? "1px solid rgba(74,222,128,0.25)" : "1px solid transparent",
                     }}
                   >
                     <div
                       className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 transition-all duration-200"
                       style={{
-                        background: isActive ? "rgba(124,58,255,0.2)" : isPast ? "rgba(0,229,160,0.1)" : "rgba(255,255,255,0.04)",
-                        border: isActive ? "1px solid rgba(124,58,255,0.4)" : isPast ? "1px solid rgba(0,229,160,0.2)" : "1px solid rgba(255,255,255,0.06)",
+                        background: isActive ? "rgba(74,222,128,0.15)" : isPast ? "rgba(251,191,36,0.08)" : "rgba(255,255,255,0.04)",
+                        border: isActive ? "1px solid rgba(74,222,128,0.35)" : isPast ? "1px solid rgba(251,191,36,0.2)" : "1px solid rgba(255,255,255,0.06)",
                       }}
                     >
                       <Icon
                         size={12}
-                        style={{ color: isActive ? "#7C3AFF" : isPast ? "#00E5A0" : "#666" }}
+                        style={{ color: isActive ? "#4ADE80" : isPast ? "#FBBF24" : "#666" }}
                       />
                     </div>
                     <span
                       className="flex-1 text-xs transition-colors duration-200"
                       style={{
-                        fontFamily: 'Space Grotesk, sans-serif',
+                        fontFamily: 'Outfit, sans-serif',
                         color: isActive ? "#fff" : isPast ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.4)",
                         fontWeight: isActive ? 600 : 400,
                       }}
@@ -182,7 +183,7 @@ export default function NavSidebar({ activeSection, isOpen, onToggle }: NavSideb
                     </span>
                     <span
                       className="text-xs font-data flex-shrink-0"
-                      style={{ color: isActive ? "#7C3AFF" : "rgba(255,255,255,0.15)" }}
+                      style={{ color: isActive ? "#4ADE80" : "rgba(255,255,255,0.15)" }}
                     >
                       {item.num}
                     </span>
@@ -200,14 +201,11 @@ export default function NavSidebar({ activeSection, isOpen, onToggle }: NavSideb
             <div
               className="text-sm font-bold"
               style={{
-                fontFamily: 'Space Grotesk, sans-serif',
-                background: "linear-gradient(135deg, #7C3AFF, #A855F7)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
+                fontFamily: 'Outfit, sans-serif',
+                color: "#4ADE80",
               }}
             >
-              LeadHatch.io
+              The Maps Guy
             </div>
             <div className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>Local SEO Intelligence</div>
           </div>

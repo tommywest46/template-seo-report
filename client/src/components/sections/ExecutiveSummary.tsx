@@ -76,10 +76,10 @@ export default function ExecutiveSummary() {
       {/* Section header */}
       <div className="mb-12">
         <div className="flex items-center gap-3 mb-4">
-          <div className="h-px flex-1 max-w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(124,58,255,0.6))" }} />
+          <div className="h-px flex-1 max-w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(74,222,128,0.6))" }} />
           <span className="text-xs font-data text-primary uppercase tracking-widest">Section 01</span>
         </div>
-        <h2 className="text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <h2 className="text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 800 }}>
           Executive Summary
         </h2>
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
@@ -103,7 +103,7 @@ export default function ExecutiveSummary() {
                   <Icon size={18} className={f.color} />
                 </div>
                 <div>
-                  <h3 className={`font-semibold text-base mb-2 ${f.color}`} style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                  <h3 className={`font-semibold text-base mb-2 ${f.color}`} style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700 }}>
                     {f.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{(f as any).descriptionJsx ?? f.description}</p>
@@ -121,7 +121,7 @@ export default function ExecutiveSummary() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Current State */}
         <div>
-          <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700 }}>
             <AlertCircle size={18} className="text-red-400" />
             Current State
           </h3>
@@ -146,7 +146,7 @@ export default function ExecutiveSummary() {
 
         {/* Opportunity */}
         <div>
-          <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700 }}>
             <CheckCircle2 size={18} className="text-green-400" />
             Growth Opportunities
           </h3>
@@ -166,13 +166,13 @@ export default function ExecutiveSummary() {
       {/* Bottom insight callout */}
       <div
         className="mt-12 p-6 rounded-xl border border-primary/20 relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg, rgba(124,58,255,0.08), rgba(0,229,160,0.04))" }}
+        style={{ background: "linear-gradient(135deg, rgba(74,222,128,0.06), rgba(251,191,36,0.04))" }}
       >
-        <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl opacity-20"
-          style={{ background: "radial-gradient(circle, #7C3AFF, transparent)" }} />
+        <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl opacity-15"
+          style={{ background: "radial-gradient(circle, #4ADE80, transparent)" }} />
         <div className="relative z-10">
           <div className="text-xs font-data text-primary uppercase tracking-widest mb-2">Key Insight</div>
-          <p className="text-foreground text-base font-medium leading-relaxed" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <p className="text-foreground text-base font-medium leading-relaxed" style={{ fontFamily: 'Nunito Sans, sans-serif', fontWeight: 600 }}>
             The competitor data reveals a clear pattern: businesses with strong topical authority websites and optimized GBP profiles 
             dominate the western Omaha market. <strong className="text-white font-semibold">Major Team Mortgage</strong> has the same — or greater — potential to own this territory. 
             The gap is a <strong className="text-primary">strategy gap</strong>, not a brand gap.

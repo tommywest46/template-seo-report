@@ -120,7 +120,7 @@ export default function OpportunitySection() {
           <div className="h-px flex-1 max-w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(0,229,160,0.6))" }} />
           <span className="text-xs font-data text-accent uppercase tracking-widest">Section 04</span>
         </div>
-        <h2 className="text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <h2 className="text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
           The Opportunity Gap
         </h2>
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
@@ -134,7 +134,7 @@ export default function OpportunitySection() {
         <div className="p-6 rounded-xl bg-card border border-border">
           <div className="flex items-center gap-2 mb-6">
             <Zap size={16} className="text-accent" />
-            <h3 className="font-semibold text-foreground" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h3 className="font-semibold text-foreground" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Opportunity Gap Scores
             </h3>
           </div>
@@ -166,7 +166,7 @@ export default function OpportunitySection() {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
             <div className="text-xs font-data text-accent uppercase tracking-widest mb-2">What Success Looks Like</div>
-            <p className="text-sm text-foreground font-medium" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <p className="text-sm text-foreground font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Green dots = top 3 rankings. This is what the map looks like for your competitors in their strongest zones — 
               and what <strong className="text-white font-semibold">Major Team Mortgage</strong>'s map should look like across <strong className="text-accent">all of Omaha</strong>.
             </p>
@@ -176,7 +176,7 @@ export default function OpportunitySection() {
 
       {/* GBP Opportunities */}
       <div className="mb-10">
-        <h3 className="text-2xl font-bold text-foreground mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <h3 className="text-2xl font-bold text-foreground mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
           Google Business Profile Wins
         </h3>
         <p className="text-muted-foreground text-sm mb-6">Quick wins that can be implemented immediately with minimal effort.</p>
@@ -191,7 +191,7 @@ export default function OpportunitySection() {
                   </div>
                   <span className={`text-xs font-data font-bold ${opp.impactColor}`}>{opp.impact}</span>
                 </div>
-                <h4 className="font-semibold text-foreground text-sm mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                <h4 className="font-semibold text-foreground text-sm mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                   {opp.title}
                 </h4>
                 <p className="text-xs text-muted-foreground leading-relaxed mb-3">{opp.description}</p>
@@ -207,7 +207,7 @@ export default function OpportunitySection() {
 
       {/* Website Opportunities */}
       <div>
-        <h3 className="text-2xl font-bold text-foreground mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <h3 className="text-2xl font-bold text-foreground mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
           Website & Content Strategy
         </h3>
         <p className="text-muted-foreground text-sm mb-6">The highest-leverage actions for long-term market dominance.</p>
@@ -222,7 +222,7 @@ export default function OpportunitySection() {
                   </div>
                   <span className={`text-xs font-data font-bold ${opp.impactColor}`}>{opp.impact}</span>
                 </div>
-                <h4 className="font-semibold text-foreground text-sm mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                <h4 className="font-semibold text-foreground text-sm mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                   {opp.title}
                 </h4>
                 <p className="text-xs text-muted-foreground leading-relaxed mb-3">{opp.description}</p>
@@ -251,17 +251,17 @@ export default function OpportunitySection() {
       {/* Bottom callout */}
       <div
         className="mt-10 p-6 rounded-xl border border-accent/20 relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg, rgba(0,229,160,0.06), rgba(124,58,255,0.04))" }}
+        style={{ background: "linear-gradient(135deg, rgba(74,222,128,0.06), rgba(74,222,128,0.03))" }}
       >
         <div className="absolute top-0 right-0 w-40 h-40 rounded-full blur-3xl opacity-15"
-          style={{ background: "radial-gradient(circle, #00E5A0, transparent)" }} />
+          style={{ background: "radial-gradient(circle, #4ADE80, transparent)" }} />
         <div className="relative z-10 flex items-start gap-4">
           <div className="p-3 rounded-xl bg-accent/10 border border-accent/20 flex-shrink-0">
             <TrendingUp size={20} className="text-accent" />
           </div>
           <div>
             <div className="text-xs font-data text-accent uppercase tracking-widest mb-2">The Bottom Line</div>
-            <p className="text-foreground font-medium text-base leading-relaxed" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <p className="text-foreground font-medium text-base leading-relaxed" style={{ fontFamily: 'Outfit, sans-serif' }}>
               The Omaha mortgage market has a dominant competitor in the west (Shotbolt) and a moderate competitor in the center 
               (Mortgage Specialists) — but the entire market is winnable. None of your competitors have built a true topical 
               authority website with proper internal linking. That's the gap. That's your path to #1.

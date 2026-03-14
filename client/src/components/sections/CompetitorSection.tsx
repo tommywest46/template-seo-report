@@ -164,10 +164,10 @@ export default function CompetitorSection() {
         {/* Section header */}
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-4">
-            <div className="h-px flex-1 max-w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(124,58,255,0.6))" }} />
+            <div className="h-px flex-1 max-w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(74,222,128,0.06))" }} />
             <span className="text-xs font-data text-primary uppercase tracking-widest">Section 03</span>
           </div>
-          <h2 className="text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h2 className="text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
             Competitor Intelligence
           </h2>
           <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
@@ -197,7 +197,7 @@ export default function CompetitorSection() {
                   #{c.rank}
                 </div>
                 <div>
-                  <div className="text-sm font-medium" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>{c.name}</div>
+                  <div className="text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{c.name}</div>
                   <div className={`text-xs font-data ${activeComp === c.id ? t.text : "text-muted-foreground"} opacity-70`}>
                     {t.label}
                   </div>
@@ -241,7 +241,7 @@ export default function CompetitorSection() {
             {/* Threat level */}
             <div className={`p-4 rounded-xl border ${threat.border} ${threat.bg}`}>
               <div className="text-xs font-data text-muted-foreground uppercase tracking-widest mb-1">Threat Assessment</div>
-              <div className={`text-xl font-bold ${threat.text}`} style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              <div className={`text-xl font-bold ${threat.text}`} style={{ fontFamily: 'Outfit, sans-serif' }}>
                 {threat.label}
               </div>
               <div className="text-xs text-muted-foreground mt-1">Keyword: {comp.keyword}</div>
@@ -286,7 +286,7 @@ export default function CompetitorSection() {
         {/* Weaknesses to exploit */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="p-6 rounded-xl bg-card border border-border">
-            <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
               <TrendingUp size={16} className="text-green-400" />
               Their Weaknesses = Your Opportunity
             </h4>
@@ -300,7 +300,7 @@ export default function CompetitorSection() {
             </ul>
           </div>
           <div className="p-6 rounded-xl bg-card border border-border">
-            <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
               <Star size={16} className="text-yellow-400" />
               What They're Doing Right
             </h4>
@@ -317,8 +317,8 @@ export default function CompetitorSection() {
 
         {/* Competitor comparison table */}
         <div className="mt-8 rounded-xl overflow-hidden border border-border">
-          <div className="px-6 py-4 border-b border-border" style={{ background: "rgba(124,58,255,0.06)" }}>
-            <h4 className="font-semibold text-foreground" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <div className="px-6 py-4 border-b border-border" style={{ background: "rgba(74,222,128,0.06)" }}>
+            <h4 className="font-semibold text-foreground" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Competitive Landscape Overview
             </h4>
           </div>

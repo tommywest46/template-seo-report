@@ -1,9 +1,9 @@
 /**
  * DESIGN: Dark Intelligence / Command Center
  * - Background: #080810 (near-void black)
- * - Primary: #7C3AFF (LeadHatch Violet)
- * - Accent: #00E5A0 (Electric Mint)
- * - Fonts: Space Grotesk (display), Inter (body), JetBrains Mono (data)
+ * - Primary: #4ADE80 (Brand Green)
+ * - Accent: #FBBF24 (Signal Gold)
+ * - Fonts: Outfit (display), Nunito Sans (body), JetBrains Mono (data)
  */
 
 import { useState, useEffect } from "react";

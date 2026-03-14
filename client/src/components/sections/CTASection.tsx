@@ -1,11 +1,13 @@
 /**
- * DESIGN: Dark Intelligence / Command Center
- * Final CTA section with LeadHatch branding and next steps
+ * DESIGN: The Maps Guy — Dark Intelligence Report
+ * Final CTA section with The Maps Guy branding and next steps
+ * Background: #0B0F1A, Primary: #4ADE80 (Brand Green), Accent: #FBBF24 (Signal Gold)
+ * Fonts: Outfit (headings), Nunito Sans (body), JetBrains Mono (data)
  */
 
-import { Phone, Mail, Calendar, ArrowRight, Shield, Clock, TrendingUp, CheckCircle2 } from "lucide-react";
+import { Mail, Calendar, ArrowRight, Shield, Clock, TrendingUp, CheckCircle2 } from "lucide-react";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/leadhatch-logo-transparent_71af9624.png";
+const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/themapsguy-logo_bbd25d09.png";
 
 const nextSteps = [
   {
@@ -40,8 +42,8 @@ export default function CTASection() {
     <div className="py-20 px-8 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-3xl opacity-10"
-          style={{ background: "radial-gradient(circle, #7C3AFF, transparent)" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-3xl opacity-8"
+          style={{ background: "radial-gradient(circle, #4ADE80, transparent)" }} />
         <div className="grid-overlay absolute inset-0 opacity-20" />
       </div>
 
@@ -49,16 +51,16 @@ export default function CTASection() {
         {/* Section header */}
         <div className="mb-12 text-center max-w-3xl mx-auto">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(124,58,255,0.6))" }} />
+            <div className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(74,222,128,0.6))" }} />
             <span className="text-xs font-data text-primary uppercase tracking-widest">Section 06</span>
-            <div className="h-px w-12" style={{ background: "linear-gradient(90deg, rgba(124,58,255,0.6), transparent)" }} />
+            <div className="h-px w-12" style={{ background: "linear-gradient(90deg, rgba(74,222,128,0.6), transparent)" }} />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}>
             Ready to Own <span className="gradient-text-purple">Omaha?</span>
           </h2>
-          <p className="text-muted-foreground text-base leading-relaxed">
+          <p className="text-muted-foreground text-base leading-relaxed" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>
             The data is clear. The opportunity is <strong className="text-accent">massive</strong>. The competitors are <strong className="text-primary">beatable</strong>. 
-            The only question is: how soon do you want <strong className="text-white font-semibold">Major Team Mortgage</strong> to start winning?
+            The only question is: how soon do you want <strong className="text-white font-bold">Major Team Mortgage</strong> to start winning?
           </p>
         </div>
 
@@ -75,10 +77,10 @@ export default function CTASection() {
                 <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-4">
                   <Icon size={20} className="text-primary" />
                 </div>
-                <h3 className="font-semibold text-foreground mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                <h3 className="font-semibold text-foreground mb-2" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700 }}>
                   {step.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>{step.description}</p>
               </div>
             );
           })}
@@ -87,37 +89,47 @@ export default function CTASection() {
         {/* Main CTA card */}
         <div
           className="rounded-2xl border border-primary/30 p-8 md:p-10 relative overflow-hidden mb-10"
-          style={{ background: "linear-gradient(135deg, rgba(124,58,255,0.12), rgba(0,229,160,0.04))" }}
+          style={{ background: "linear-gradient(135deg, rgba(74,222,128,0.07), rgba(251,191,36,0.04))" }}
         >
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-20"
-            style={{ background: "radial-gradient(circle, #7C3AFF, transparent)" }} />
-          <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full blur-3xl opacity-10"
-            style={{ background: "radial-gradient(circle, #00E5A0, transparent)" }} />
+          <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-12"
+            style={{ background: "radial-gradient(circle, #4ADE80, transparent)" }} />
+          <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full blur-3xl opacity-8"
+            style={{ background: "radial-gradient(circle, #FBBF24, transparent)" }} />
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <img
                   src={LOGO_URL}
-                  alt="LeadHatch.io"
-                  className="h-12 w-auto object-contain max-w-[200px]"
-                  style={{ filter: 'drop-shadow(0 0 10px rgba(124,58,255,0.25))' }}
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  alt="The Maps Guy"
+                  className="h-12 w-auto object-contain max-w-[220px]"
+                  style={{ filter: 'drop-shadow(0 0 8px rgba(74,222,128,0.2))' }}
+                  onError={(e) => {
+                    const el = e.target as HTMLImageElement;
+                    el.style.display = 'none';
+                    const parent = el.parentElement;
+                    if (parent) {
+                      const text = document.createElement('span');
+                      text.textContent = 'The Maps Guy';
+                      text.style.cssText = 'font-family: Outfit, sans-serif; font-weight: 900; font-size: 22px; color: #4ADE80;';
+                      parent.appendChild(text);
+                    }
+                  }}
                 />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-3" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              <h3 className="text-2xl font-bold text-foreground mb-3" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 800 }}>
                 Let's Build Your Dominance Strategy
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                LeadHatch.io specializes in local SEO for service-based businesses. We've built the systems, 
+              <p className="text-muted-foreground text-sm leading-relaxed mb-6" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>
+                The Maps Guy specializes in local SEO for service-based businesses. We've built the systems, 
                 the content frameworks, and the GBP optimization playbooks that move the needle — fast.
               </p>
 
               {/* Guarantees */}
               <div className="space-y-2 mb-6">
                 {guarantees.map((g, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 size={13} className="text-accent flex-shrink-0" />
+                  <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>
+                    <CheckCircle2 size={13} className="text-primary flex-shrink-0" />
                     {g}
                   </div>
                 ))}
@@ -129,11 +141,12 @@ export default function CTASection() {
                   href="https://link.leadhatch.io/widget/booking/38JOacWxj8UgCxcCYIy2"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm text-white transition-all duration-200 hover:scale-105"
+                  className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-sm transition-all duration-200 hover:scale-105"
                   style={{
-                    background: "linear-gradient(135deg, #7C3AFF, #A855F7)",
-                    boxShadow: "0 0 20px rgba(124,58,255,0.4)",
-                    fontFamily: 'Space Grotesk, sans-serif',
+                    background: "#4ADE80",
+                    color: "#0B0F1A",
+                    boxShadow: "0 0 20px rgba(74,222,128,0.35)",
+                    fontFamily: 'Outfit, sans-serif',
                   }}
                 >
                   Book Strategy Call
@@ -142,7 +155,7 @@ export default function CTASection() {
                 <a
                   href="mailto:tommy@leadhatch.io"
                   className="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm border border-border text-foreground hover:border-primary hover:text-primary transition-all duration-200"
-                  style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+                  style={{ fontFamily: 'Outfit, sans-serif' }}
                 >
                   <Mail size={14} />
                   Send Email
@@ -157,10 +170,10 @@ export default function CTASection() {
                   <Clock size={14} className="text-red-400" />
                   <span className="text-xs font-data text-red-400 uppercase tracking-wider">Urgency Factor</span>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>
                   Every month without visibility is <strong className="text-red-400">estimated revenue lost</strong> to competitors. 
                   The Omaha mortgage market processes <strong className="text-foreground">thousands of local searches</strong> monthly — 
-                  none of which are finding <strong className="text-white font-semibold">Major Team Mortgage</strong>.
+                  none of which are finding <strong className="text-white font-bold">Major Team Mortgage</strong>.
                 </p>
               </div>
 
@@ -192,11 +205,11 @@ export default function CTASection() {
           <div className="flex items-center gap-3">
             <img
               src={LOGO_URL}
-              alt="LeadHatch.io"
-              className="h-7 w-auto object-contain opacity-70 max-w-[120px]"
+              alt="The Maps Guy"
+              className="h-7 w-auto object-contain opacity-80 max-w-[140px]"
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
-            <span className="font-data text-xs">© 2026 LeadHatch.io — Local SEO Intelligence</span>
+            <span className="font-data text-xs">© 2026 The Maps Guy — Local SEO Intelligence</span>
           </div>
           <div className="text-xs font-data text-muted-foreground">
             Confidential Report — Prepared for <strong className="text-white/80">Major Team Mortgage</strong>, Omaha NE — Mar 10, 2026

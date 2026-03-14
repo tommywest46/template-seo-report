@@ -14,7 +14,7 @@ const phases = [
     color: "text-primary",
     borderColor: "border-primary/40",
     bgColor: "bg-primary/8",
-    glowColor: "rgba(124,58,255,0.3)",
+    glowColor: "rgba(74,222,128,0.3)",
     tasks: [
       { task: "Add 'Mortgage Lender' as secondary GBP category", impact: "HIGH" },
       { task: "Add 'Loan Agency' as secondary GBP category", impact: "HIGH" },
@@ -107,17 +107,17 @@ export default function RoadmapSection() {
     <div className="py-20 px-8 relative">
       {/* Subtle background gradient */}
       <div className="absolute inset-0 opacity-20" style={{
-        background: "radial-gradient(ellipse at 50% 50%, rgba(124,58,255,0.08), transparent 70%)"
+        background: "radial-gradient(ellipse at 50% 50%, rgba(74,222,128,0.06), transparent 70%)"
       }} />
 
       <div className="relative z-10">
         {/* Section header */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
-            <div className="h-px flex-1 max-w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(124,58,255,0.6))" }} />
+            <div className="h-px flex-1 max-w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(74,222,128,0.6))" }} />
             <span className="text-xs font-data text-primary uppercase tracking-widest">Section 05</span>
           </div>
-          <h2 className="text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h2 className="text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 800 }}>
             The SEO Roadmap
           </h2>
           <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
@@ -130,7 +130,7 @@ export default function RoadmapSection() {
         <div className="relative">
           {/* Vertical line */}
           <div className="absolute left-6 top-0 bottom-0 w-px hidden md:block"
-            style={{ background: "linear-gradient(180deg, rgba(124,58,255,0.6), rgba(0,229,160,0.4), transparent)" }} />
+            style={{ background: "linear-gradient(180deg, rgba(74,222,128,0.6), rgba(251,191,36,0.4), transparent)" }} />
 
           <div className="space-y-8">
             {phases.map((phase, i) => {
@@ -166,13 +166,13 @@ export default function RoadmapSection() {
                             {phase.timeline}
                           </span>
                         </div>
-                        <h3 className="text-xl font-bold text-foreground" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                        <h3 className="text-xl font-bold text-foreground" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700 }}>
                           {phase.title}
                         </h3>
                       </div>
                       <div className="text-right">
                         <div className="text-xs text-muted-foreground mb-1">Target</div>
-                        <div className={`text-sm font-semibold ${phase.color}`} style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                        <div className={`text-sm font-semibold ${phase.color}`} style={{ fontFamily: 'Outfit, sans-serif' }}>
                           {phase.rankingTarget}
                         </div>
                       </div>
@@ -208,7 +208,7 @@ export default function RoadmapSection() {
 
         {/* Summary timeline bar */}
         <div className="mt-12 p-6 rounded-xl bg-card border border-border">
-          <h4 className="font-semibold text-foreground mb-6 text-center" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h4 className="font-semibold text-foreground mb-6 text-center" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700 }}>
             6-Month Ranking Trajectory
           </h4>
           <div className="flex items-end gap-2 h-24 mb-3">
@@ -218,8 +218,8 @@ export default function RoadmapSection() {
               { month: "Mo 2", rank: 10, color: "#eab308" },
               { month: "Mo 3", rank: 7, color: "#84cc16" },
               { month: "Mo 4", rank: 4, color: "#22c55e" },
-              { month: "Mo 5", rank: 2, color: "#00E5A0" },
-              { month: "Mo 6", rank: 1, color: "#00E5A0" },
+              { month: "Mo 5", rank: 2, color: "#4ADE80" },
+              { month: "Mo 6", rank: 1, color: "#4ADE80" },
             ].map((item, i) => (
               <div key={i} className="flex-1 flex flex-col items-center gap-1">
                 <div className="text-xs font-data font-bold" style={{ color: item.color }}>

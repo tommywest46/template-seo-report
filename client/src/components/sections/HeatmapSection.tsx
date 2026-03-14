@@ -61,14 +61,14 @@ export default function HeatmapSection() {
   const active = heatmaps.find(h => h.id === activeTab)!;
 
   return (
-    <div className="py-20 px-8 relative" style={{ background: "linear-gradient(180deg, transparent, rgba(124,58,255,0.03), transparent)" }}>
+    <div className="py-20 px-8 relative" style={{ background: "linear-gradient(180deg, transparent, rgba(74,222,128,0.02), transparent)" }}>
       {/* Section header */}
       <div className="mb-10">
         <div className="flex items-center gap-3 mb-4">
-          <div className="h-px flex-1 max-w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(124,58,255,0.6))" }} />
+          <div className="h-px flex-1 max-w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(74,222,128,0.6))" }} />
           <span className="text-xs font-data text-primary uppercase tracking-widest">Section 02</span>
         </div>
-        <h2 className="text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <h2 className="text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
           Local Ranking Heatmaps
         </h2>
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
@@ -99,7 +99,7 @@ export default function HeatmapSection() {
                 ? "bg-primary text-white border-primary shadow-lg"
                 : "bg-card text-muted-foreground border-border hover:border-primary/40 hover:text-foreground"
               }`}
-            style={{ fontFamily: 'Space Grotesk, sans-serif', boxShadow: activeTab === h.id ? "0 0 20px rgba(124,58,255,0.3)" : undefined }}
+            style={{ fontFamily: 'Outfit, sans-serif', boxShadow: activeTab === h.id ? "0 0 20px rgba(74,222,128,0.3)" : undefined }}
           >
             {h.keyword}
           </button>
@@ -145,7 +145,7 @@ export default function HeatmapSection() {
           {/* Severity badge */}
           <div className="p-4 rounded-xl border border-red-500/30 bg-red-500/10">
             <div className="text-xs font-data text-red-400 uppercase tracking-widest mb-1">Severity Level</div>
-            <div className="text-2xl font-bold text-red-400" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>CRITICAL</div>
+            <div className="text-2xl font-bold text-red-400" style={{ fontFamily: 'Outfit, sans-serif' }}>CRITICAL</div>
             <div className="text-xs text-muted-foreground mt-1">Immediate action required</div>
           </div>
 
@@ -175,7 +175,7 @@ export default function HeatmapSection() {
           </div>
 
           {/* What this means */}
-          <div className="p-4 rounded-xl border border-primary/20" style={{ background: "rgba(124,58,255,0.06)" }}>
+          <div className="p-4 rounded-xl border border-primary/20" style={{ background: "rgba(74,222,128,0.06)" }}>
             <div className="text-xs font-data text-primary uppercase tracking-wider mb-2">What This Means</div>
             <p className="text-xs text-muted-foreground leading-relaxed">
               Every day without visibility is <strong className="text-red-400">lost revenue</strong>. Homebuyers searching for mortgage services in Omaha 
