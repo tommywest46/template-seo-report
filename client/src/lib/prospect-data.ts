@@ -31,7 +31,7 @@ export const PROSPECT = {
       id: "broker",
       keyword: "Mortgage Broker",
       date: "Mar 10, 2026",
-      imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/MTM-Mortgage-Broker_d2d4c0f5.png",
+      imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/MTM-Mortgage-Broker_c859ffa7.png",
       // Summary stats derived from reading the heatmap
       gridPoints: 156,
       rankingOutsideTop20: 155,  // number of red (20) dots
@@ -44,7 +44,7 @@ export const PROSPECT = {
       id: "lender",
       keyword: "Mortgage Lender",
       date: "Mar 10, 2026",
-      imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/MTM-Mortgage-Lender_a0a9e7e5.png",
+      imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/MTM-Mortgage-Lender_f42d1396.png",
       gridPoints: 156,
       rankingOutsideTop20: 156,
       rankingTop3: 0,
@@ -56,7 +56,7 @@ export const PROSPECT = {
       id: "loan-agency",
       keyword: "Loan Agency",
       date: "Mar 10, 2026",
-      imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/MTM-Loan-Agency_6e4ee4b1.png",
+      imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/MTM-Loan-Agency_f9a84dad.png",
       gridPoints: 156,
       rankingOutsideTop20: 156,
       rankingTop3: 0,
@@ -71,7 +71,7 @@ export const PROSPECT = {
     {
       rank: 1,
       name: "Shotbolt Mortgage Corporation",
-      imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/Shotbolt-Mortgage_5e5c8e8e.png",
+      imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/Shotbolt-Mortgage_e0d5dc43.png",
       keyword: "Mortgage Broker",
       // SEO factor scores (0-100)
       scores: {
@@ -102,7 +102,7 @@ export const PROSPECT = {
     {
       rank: 2,
       name: "Mortgage Specialists, LLC",
-      imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/Mortage-Specialists_6d4b8b4d.png",
+      imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/Mortage-Specialists_ff745e69.png",
       keyword: "Mortgage Broker",
       scores: {
         gbpOptimization: 55,
@@ -131,7 +131,7 @@ export const PROSPECT = {
     {
       rank: 3,
       name: "Niki Cox — Guild Mortgage Company",
-      imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/Niki-Cox-Guild_a1b2c3d4.png",
+      imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/Niki-Cox-Guild_79c8323e.png",
       keyword: "Mortgage Broker",
       scores: {
         gbpOptimization: 60,
