@@ -20,12 +20,21 @@ const WEBHOOK_URL =
 
 const LOGO_URL = PROSPECT.agency.logoUrl;
 const SESSION_KEY = "tmg_gate_passed";
+// Secret bypass param — share ?preview=1 URL with team members to skip the gate.
+// Prospects receive the clean URL and always see the gate.
+const BYPASS_PARAM = "preview";
+const BYPASS_VALUE = "1";
 
 export default function AccessGateModal() {
-  // Skip the gate entirely if the prospect already submitted this session
-  const [visible, setVisible] = useState(
-    () => sessionStorage.getItem(SESSION_KEY) !== "1"
-  );
+  // Skip the gate if:
+  //   (a) the prospect already submitted this session (sessionStorage flag), OR
+  //   (b) the URL contains the secret bypass param (?preview=1) for team previews
+  const [visible, setVisible] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    const isBypass = params.get(BYPASS_PARAM) === BYPASS_VALUE;
+    const isReturning = sessionStorage.getItem(SESSION_KEY) === "1";
+    return !isBypass && !isReturning;
+  });
   const [fading, setFading] = useState(false);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
