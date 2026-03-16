@@ -16,6 +16,7 @@ import OpportunitySection from "@/components/sections/OpportunitySection";
 import RoadmapSection from "@/components/sections/RoadmapSection";
 import CTASection from "@/components/sections/CTASection";
 import StickyBookingCTA from "@/components/StickyBookingCTA";
+import AccessGateModal from "@/components/AccessGateModal";
 
 const SECTIONS = ["hero", "summary", "heatmaps", "competitors", "opportunity", "roadmap", "cta"];
 
@@ -43,6 +44,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <AccessGateModal />
       <NavSidebar activeSection={activeSection} isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
 
       <main className="lg:ml-64 xl:ml-72">
