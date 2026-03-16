@@ -82,13 +82,24 @@ export default function AccessGateModal() {
     setErrors({});
     setLoading(true);
 
+    // Build the bypass URL — base origin + pathname + ?preview=1
+    // (strips any existing query params so the bypass URL is always clean)
+    const bypassUrl =
+      window.location.origin +
+      window.location.pathname +
+      "?" +
+      BYPASS_PARAM +
+      "=" +
+      BYPASS_VALUE;
+
     const payload = {
       full_name: fullName.trim(),
       email: email.trim(),
       phone: phone.trim(),
       event: "report_opened",
       timestamp: new Date().toISOString(),
-      report_url: window.location.href,
+      report_url: window.location.origin + window.location.pathname,
+      bypass_url: bypassUrl,
       prospect_name: PROSPECT.name,
       prospect_city: PROSPECT.cityState,
     };
