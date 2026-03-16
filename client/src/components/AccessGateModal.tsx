@@ -23,6 +23,14 @@ export default function AccessGateModal() {
   const [errors, setErrors] = useState<{ fullName?: string; email?: string; phone?: string }>({});
   const [loading, setLoading] = useState(false);
 
+  function formatPhone(value: string) {
+    // Strip all non-digits
+    const digits = value.replace(/\D/g, "").slice(0, 10);
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  }
+
   // Prevent body scroll while modal is open
   useEffect(() => {
     if (visible) {
@@ -128,7 +136,6 @@ export default function AccessGateModal() {
             width: "auto",
             objectFit: "contain",
             marginBottom: "1.5rem",
-            filter: "invert(1)",
           }}
           onError={(e) => {
             // Fallback text logo if image fails
@@ -282,7 +289,7 @@ export default function AccessGateModal() {
               type="tel"
               placeholder="(555) 867-5309"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => setPhone(formatPhone(e.target.value))}
               autoComplete="tel"
               style={{
                 fontFamily: "Nunito Sans, sans-serif",
