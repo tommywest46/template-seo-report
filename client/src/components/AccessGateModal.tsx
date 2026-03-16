@@ -69,6 +69,9 @@ export default function AccessGateModal() {
       phone: phone.trim(),
       event: "report_opened",
       timestamp: new Date().toISOString(),
+      report_url: window.location.href,
+      prospect_name: PROSPECT.name,
+      prospect_city: PROSPECT.cityState,
     };
 
     try {
@@ -132,7 +135,7 @@ export default function AccessGateModal() {
           src={LOGO_URL}
           alt="The Maps Guy"
           style={{
-            height: "44px",
+            height: "56px",
             width: "auto",
             objectFit: "contain",
             marginBottom: "1.5rem",
