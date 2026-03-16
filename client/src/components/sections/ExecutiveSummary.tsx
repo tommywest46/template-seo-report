@@ -28,8 +28,8 @@ const findings = [
     bg: "bg-red-500/10",
     border: "border-red-500/20",
     title: "Zero Top-20 Rankings",
-    descriptionJsx: (<><strong className="text-white font-semibold">{PROSPECT.name}</strong> does not appear in the <strong className="text-red-400">top 20</strong> Google Maps results for any of the <strong className="text-yellow-400">{PROSPECT.heatmaps.length} tracked keywords</strong> across all <strong className="text-foreground">{PROSPECT.heatmaps[0]?.gridPoints} grid points</strong> in the {PROSPECT.city} metro area.</>),
-    description: `${PROSPECT.name} does not appear in the top 20 Google Maps results for any of the ${PROSPECT.heatmaps.length} tracked keywords across all ${PROSPECT.heatmaps[0]?.gridPoints} grid points in the ${PROSPECT.city} metro area.`,
+    descriptionJsx: (<><strong className="text-white font-semibold">{PROSPECT.name}</strong> does not appear in the <strong className="text-red-400">top 20</strong> Google Maps results for any of the <strong className="text-yellow-400">{PROSPECT.heatmaps.length} tracked categories</strong> across all <strong className="text-foreground">{PROSPECT.heatmaps[0]?.gridPoints} grid points</strong> in the {PROSPECT.city} metro area.</>),
+    description: `${PROSPECT.name} does not appear in the top 20 Google Maps results for any of the ${PROSPECT.heatmaps.length} tracked categories across all ${PROSPECT.heatmaps[0]?.gridPoints} grid points in the ${PROSPECT.city} metro area.`,
   },
   {
     icon: Eye,
@@ -38,7 +38,7 @@ const findings = [
     border: "border-orange-500/20",
     title: "Invisible to Local Buyers",
     descriptionJsx: (<>Potential customers searching {PROSPECT.heatmaps.map((h, i) => (<span key={i}><strong className="text-yellow-400">'{h.keyword.toLowerCase()}'</strong>{i < PROSPECT.heatmaps.length - 1 ? ', ' : ''}</span>))} in {PROSPECT.city} cannot find <strong className="text-white font-semibold">{PROSPECT.name}</strong> in Google Maps — the primary discovery channel for local services.</>),
-    description: `Potential customers cannot find ${PROSPECT.name} in Google Maps for any tracked keyword in ${PROSPECT.city}.`,
+    description: `Potential customers cannot find ${PROSPECT.name} in Google Maps for any tracked category in ${PROSPECT.city}.`,
   },
   {
     icon: Search,

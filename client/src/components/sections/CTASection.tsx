@@ -182,7 +182,7 @@ export default function CTASection() {
                   <div className="text-xs text-muted-foreground mt-1">Opportunity Score</div>
                 </div>
                 <div className="p-4 rounded-xl bg-black/30 border border-border text-center">
-                  <div className="text-2xl font-bold font-data text-accent">6 mo</div>
+                  <div className="text-2xl font-bold font-data text-accent">3 mo</div>
                   <div className="text-xs text-muted-foreground mt-1">To Market Dominance</div>
                 </div>
                 <div className="p-4 rounded-xl bg-black/30 border border-border text-center">

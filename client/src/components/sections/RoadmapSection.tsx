@@ -121,7 +121,7 @@ export default function RoadmapSection() {
             The SEO Roadmap
           </h2>
           <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-            A phased, <strong className="text-primary">6-month roadmap</strong> to take <strong className="text-white font-semibold">Major Team Mortgage</strong> from <strong className="text-red-400">invisible</strong> to <strong className="text-accent">dominant</strong> across the Omaha metro area. 
+            A phased, <strong className="text-primary">#1 Map Protocol</strong> to take <strong className="text-white font-semibold">Major Team Mortgage</strong> from <strong className="text-red-400">invisible</strong> to <strong className="text-accent">dominant</strong> across the Omaha metro area. 
             Each phase builds on the last, creating compounding momentum.
           </p>
         </div>
