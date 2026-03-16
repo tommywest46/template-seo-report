@@ -243,7 +243,7 @@ export default function RoadmapSection() {
             ))}
           </div>
           <p className="text-xs text-muted-foreground text-center mt-4">
-            Projected average ranking trajectory across all tracked keywords in the Omaha metro
+            Projected average ranking trajectory across all tracked categories in the Omaha metro
           </p>
         </div>
       </div>

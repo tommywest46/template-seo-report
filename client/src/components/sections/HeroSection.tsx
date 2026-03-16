@@ -12,7 +12,7 @@ import { PROSPECT } from "@/lib/prospect-data";
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/hero-bg-7aHuMzzvfawGLf2ZspRw8n.webp";
 
 const metrics = [
-  { label: "Keywords Tracked", value: PROSPECT.heatmaps.length, suffix: "", color: "#4ADE80", glow: "rgba(74,222,128,0.4)" },
+  { label: "Categories Tracked", value: PROSPECT.heatmaps.length, suffix: "", color: "#4ADE80", glow: "rgba(74,222,128,0.4)" },
   { label: "Avg. Map Ranking", value: 20, suffix: "+", color: "#ef4444", glow: "rgba(239,68,68,0.4)" },
   { label: "Grid Points Analyzed", value: PROSPECT.heatmaps[0]?.gridPoints ?? 156, suffix: "", color: "#FBBF24", glow: "rgba(251,191,36,0.4)" },
   { label: "Opportunity Score", value: PROSPECT.opportunityScores.overall, suffix: "%", color: "#4ADE80", glow: "rgba(74,222,128,0.4)" },
@@ -134,7 +134,7 @@ export default function HeroSection() {
             className={`text-base md:text-lg text-muted-foreground max-w-2xl mb-10 leading-relaxed transition-all duration-700 delay-200 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           style={{ fontFamily: 'Nunito Sans, sans-serif' }}
           >
-            Across <strong className="text-foreground">{PROSPECT.heatmaps[0]?.gridPoints ?? 156} geographic data points</strong> in the {PROSPECT.city} metro area, <strong className="text-white font-bold">{PROSPECT.name}</strong> ranks <strong className="text-red-400">outside the top 20</strong> for every tracked keyword across <strong className="text-yellow-400">{PROSPECT.heatmaps.length} keyword categories</strong>. 
+            Across <strong className="text-foreground">{PROSPECT.heatmaps[0]?.gridPoints ?? 156} geographic data points</strong> in the {PROSPECT.city} metro area, <strong className="text-white font-bold">{PROSPECT.name}</strong> ranks <strong className="text-red-400">outside the top 20</strong> across <strong className="text-yellow-400">{PROSPECT.heatmaps.length} categories</strong>. 
             This report reveals exactly what's happening — and the precise roadmap to dominate your market.
           </p>
 

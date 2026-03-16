@@ -172,7 +172,7 @@ export default function CompetitorSection() {
             Competitor Intelligence
           </h2>
           <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-            Your top 3 competitors for the <strong className="text-yellow-400">"{PROSPECT.heatmaps[0]?.keyword}"</strong> keyword in {PROSPECT.cityState}. Understanding their strengths and 
+            Your top 3 competitors for the <strong className="text-yellow-400">"{PROSPECT.heatmaps[0]?.keyword}"</strong> category in {PROSPECT.cityState}. Understanding their strengths and 
             weaknesses reveals exactly where <strong className="text-white font-semibold">{PROSPECT.name}</strong> can break through.
           </p>
         </div>
@@ -245,7 +245,7 @@ export default function CompetitorSection() {
               <div className={`text-xl font-bold ${threat.text}`} style={{ fontFamily: 'Outfit, sans-serif' }}>
                 {threat.label}
               </div>
-              <div className="text-xs text-muted-foreground mt-1">Keyword: {comp.keyword}</div>
+              <div className="text-xs text-muted-foreground mt-1">Category: {comp.keyword}</div>
             </div>
 
             {/* SEO factors */}
