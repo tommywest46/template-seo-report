@@ -4,6 +4,12 @@
  * Blocks all report content with a blur effect until form is submitted.
  * Fires a webhook POST on submit; dismisses even if POST fails.
  * No third-party libraries — pure React state + native fetch.
+ *
+ * sessionStorage key: "tmg_gate_passed"
+ * Set to "1" after successful form submission. While this key exists in
+ * the current browser session the modal is skipped entirely, so refreshing
+ * the page does not re-show the gate. Cleared automatically when the tab
+ * (or browser) is closed (sessionStorage lifetime).
  */
 
 import { useEffect, useState } from "react";
@@ -13,9 +19,13 @@ const WEBHOOK_URL =
   "https://services.leadconnectorhq.com/hooks/SQZKf0VITDuwQomTAKMx/webhook-trigger/56335878-b065-4eda-8ad4-05f88f14b2b3";
 
 const LOGO_URL = PROSPECT.agency.logoUrl;
+const SESSION_KEY = "tmg_gate_passed";
 
 export default function AccessGateModal() {
-  const [visible, setVisible] = useState(true);
+  // Skip the gate entirely if the prospect already submitted this session
+  const [visible, setVisible] = useState(
+    () => sessionStorage.getItem(SESSION_KEY) !== "1"
+  );
   const [fading, setFading] = useState(false);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -89,6 +99,8 @@ export default function AccessGateModal() {
   }
 
   function dismiss() {
+    // Persist the "passed" flag so page refreshes skip the gate
+    sessionStorage.setItem(SESSION_KEY, "1");
     setFading(true);
     setTimeout(() => setVisible(false), 600);
   }
