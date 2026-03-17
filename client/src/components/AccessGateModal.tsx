@@ -137,9 +137,10 @@ export default function AccessGateModal() {
         alignItems: "center",
         justifyContent: "center",
         padding: "1rem",
-        background: "rgba(5, 8, 18, 0.92)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
+        // Lighter dark tint so the blurred report content is visible behind the card
+        background: "rgba(5, 8, 18, 0.55)",
+        backdropFilter: "blur(18px) brightness(0.6)",
+        WebkitBackdropFilter: "blur(18px) brightness(0.6)",
         transition: "opacity 0.6s ease",
         opacity: fading ? 0 : 1,
         pointerEvents: fading ? "none" : "auto",
