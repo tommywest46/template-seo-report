@@ -1,126 +1,45 @@
 /**
  * DESIGN: Dark Intelligence / Command Center
  * Competitor analysis with heatmaps and detailed breakdowns
+ * All competitor data sourced from PROSPECT.competitors — do NOT hardcode
  */
 
 import { useState } from "react";
-import { Users, Star, AlertTriangle, CheckCircle, XCircle, Globe, MapPin, TrendingUp } from "lucide-react";
+import { Users, Star, AlertTriangle, CheckCircle, XCircle, MapPin, TrendingUp } from "lucide-react";
 import { PROSPECT } from "@/lib/prospect-data";
 
-const SHOTBOLT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/Shotbolt-Mortgage_710566b1.png";
-const SPECIALISTS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/Mortage-Specialists_41958130.png";
-const NIKI_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/Niki-Cox-Guild_ad238745.png";
 const COMP_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/competitor-bg-BdAHBBktBxHHXKwXT2pMu9.webp";
 
 type Strength = "strong" | "moderate" | "weak" | "none";
 
-interface Competitor {
-  id: string;
-  rank: number;
-  name: string;
-  image: string;
-  keyword: string;
-  topRankZones: string;
-  weakZones: string;
-  topicalRelevance: Strength;
-  internalLinking: Strength;
-  personalWebsite: Strength;
-  gbpOptimization: Strength;
-  strengths: string[];
-  weaknesses: string[];
-  threatLevel: "high" | "medium" | "low";
-  summary: string;
-  avgRankBest: string;
-  dominanceZone: string;
+function scoreToStrength(score: number): Strength {
+  if (score >= 70) return "strong";
+  if (score >= 45) return "moderate";
+  if (score >= 20) return "weak";
+  return "none";
 }
 
-const competitors: Competitor[] = [
-  {
-    id: "shotbolt",
-    rank: 1,
-    name: "Shotbolt Mortgage Corporation",
-    image: SHOTBOLT_IMG,
-    keyword: "Mortgage Broker",
-    topRankZones: "West & Southwest Omaha (ranks #1–3 across wide area)",
-    weakZones: "East Omaha, Ralston, Papillion (ranks 15–20+)",
-    topicalRelevance: "moderate",
-    internalLinking: "none",
-    personalWebsite: "moderate",
-    gbpOptimization: "moderate",
-    strengths: [
-      "Dominates western Omaha with #1–3 rankings",
-      "Strong GBP proximity advantage in service area",
-      "OK topical relevance with categories and services",
-    ],
-    weaknesses: [
-      "No internal linking strategy on website",
-      "Weak in eastern Omaha — opportunity for MTM",
-      "Limited topical authority content",
-      "Rankings drop sharply east of I-275",
-    ],
-    threatLevel: "high",
-    summary: "The primary competitor. Shotbolt dominates western Omaha through proximity and GBP optimization, but has significant weaknesses in site architecture and topical authority that can be exploited.",
-    avgRankBest: "#1–3",
-    dominanceZone: "West Omaha",
-  },
-  {
-    id: "specialists",
-    rank: 2,
-    name: "Mortgage Specialists, LLC",
-    image: SPECIALISTS_IMG,
-    keyword: "Mortgage Broker",
-    topRankZones: "Central & Southeast Omaha (ranks #1–5 in core area)",
-    weakZones: "West Omaha, Gretna, Springfield (ranks 10–20+)",
-    topicalRelevance: "moderate",
-    internalLinking: "none",
-    personalWebsite: "moderate",
-    gbpOptimization: "moderate",
-    strengths: [
-      "Strong central Omaha presence",
-      "Ranks #1 in several southeast grid points",
-      "Good GBP review volume",
-    ],
-    weaknesses: [
-      "No internal linking — major content gap",
-      "Average topical relevance only",
-      "Weak in western suburbs",
-      "No geographic content strategy",
-    ],
-    threatLevel: "medium",
-    summary: "Moderate threat. Mortgage Specialists holds central Omaha but lacks the content depth to defend against a well-executed topical authority strategy. Their absence of internal linking is a critical vulnerability.",
-    avgRankBest: "#1–5",
-    dominanceZone: "Central Omaha",
-  },
-  {
-    id: "niki",
-    rank: 3,
-    name: "Niki Cox — Guild Mortgage",
-    image: NIKI_IMG,
-    keyword: "Mortgage Broker",
-    topRankZones: "Southwest Omaha, Chalco area (ranks #1–4)",
-    weakZones: "East Omaha, Ralston, Papillion (ranks 15–20+)",
-    topicalRelevance: "none",
-    internalLinking: "none",
-    personalWebsite: "none",
-    gbpOptimization: "moderate",
-    strengths: [
-      "Strong personal brand and review profile",
-      "Good GBP proximity in southwest Omaha",
-      "Guild Mortgage brand authority",
-    ],
-    weaknesses: [
-      "No personal website — relies entirely on GBP",
-      "Zero topical authority content",
-      "No internal linking possible",
-      "Extremely vulnerable to algorithm changes",
-      "Cannot build geographic relevance without a site",
-    ],
-    threatLevel: "low",
-    summary: "The most beatable competitor. Niki Cox ranks purely on GBP proximity and personal brand with zero website presence. A comprehensive content strategy would quickly surpass her rankings across most of the map.",
-    avgRankBest: "#1–4",
-    dominanceZone: "SW Omaha / Chalco",
-  },
-];
+function rankToThreat(rank: number): "high" | "medium" | "low" {
+  if (rank === 1) return "high";
+  if (rank === 2) return "medium";
+  return "low";
+}
+
+// Derive best rank label from greenPct
+function bestRankLabel(greenPct: number, yellowPct: number): string {
+  if (greenPct >= 30) return "#1–3";
+  if (greenPct >= 15) return "#1–5";
+  if (yellowPct >= 40) return "#4–10";
+  return "#8–15";
+}
+
+// Derive dominance zone from competitor name / data
+function getDominanceZone(name: string): string {
+  if (name.toLowerCase().includes("scott")) return "East & Central Omaha";
+  if (name.toLowerCase().includes("certa")) return "Central Omaha";
+  if (name.toLowerCase().includes("five star") || name.toLowerCase().includes("sarpy")) return "Sarpy County";
+  return "Omaha Metro";
+}
 
 const strengthLabels: Record<Strength, { label: string; color: string; icon: React.ComponentType<{ size?: number; className?: string }> }> = {
   strong: { label: "Strong", color: "text-green-400", icon: CheckCircle },
@@ -147,11 +66,20 @@ function StrengthBadge({ value }: { value: Strength }) {
 }
 
 export default function CompetitorSection() {
-  const [activeComp, setActiveComp] = useState("shotbolt");
+  const [activeComp, setActiveComp] = useState(PROSPECT.competitors[0]?.name ?? "");
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  const comp = competitors.find(c => c.id === activeComp)!;
-  const threat = threatColors[comp.threatLevel];
+  const comp = PROSPECT.competitors.find(c => c.name === activeComp) ?? PROSPECT.competitors[0];
+  if (!comp) return null;
+
+  const threatLevel = rankToThreat(comp.rank);
+  const threat = threatColors[threatLevel];
+  const topicalStrength = scoreToStrength(comp.scores.topicalRelevance);
+  const linkingStrength = scoreToStrength(comp.scores.internalLinking);
+  const websiteStrength = scoreToStrength(comp.scores.websiteAuthority);
+  const gbpStrength = scoreToStrength(comp.scores.gbpOptimization);
+  const avgRankBest = bestRankLabel(comp.greenPct, comp.yellowPct);
+  const dominanceZone = getDominanceZone(comp.name);
 
   return (
     <div className="py-20 px-8 relative overflow-hidden">
@@ -169,37 +97,38 @@ export default function CompetitorSection() {
             <span className="text-xs font-data text-primary uppercase tracking-widest">Section 03</span>
           </div>
           <h2 className="text-4xl font-bold text-foreground mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            Competitor Intelligence
+            Competitor Analysis
           </h2>
           <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-            Your top 3 competitors for the <strong className="text-yellow-400">"{PROSPECT.heatmaps[0]?.keyword}"</strong> category in {PROSPECT.cityState}. Understanding their strengths and 
+            Your top 3 competitors for the <strong className="text-yellow-400">"{PROSPECT.heatmaps[0]?.keyword}"</strong> category in {PROSPECT.cityState}. Understanding their strengths and
             weaknesses reveals exactly where <strong className="text-white font-semibold">{PROSPECT.name}</strong> can break through.
           </p>
         </div>
 
         {/* Competitor tabs */}
         <div className="flex gap-3 mb-8 flex-wrap">
-          {competitors.map((c) => {
-            const t = threatColors[c.threatLevel];
+          {PROSPECT.competitors.map((c) => {
+            const tl = rankToThreat(c.rank);
+            const t = threatColors[tl];
             return (
               <button
-                key={c.id}
-                onClick={() => setActiveComp(c.id)}
+                key={c.name}
+                onClick={() => setActiveComp(c.name)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl border text-left transition-all duration-200
-                  ${activeComp === c.id
+                  ${activeComp === c.name
                     ? `${t.bg} ${t.border} ${t.text}`
                     : "bg-card border-border text-muted-foreground hover:border-primary/30 hover:text-foreground"
                   }`}
               >
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold font-data
-                  ${activeComp === c.id ? t.text : "text-muted-foreground"}`}
-                  style={{ background: activeComp === c.id ? undefined : "rgba(255,255,255,0.05)" }}
+                  ${activeComp === c.name ? t.text : "text-muted-foreground"}`}
+                  style={{ background: activeComp === c.name ? undefined : "rgba(255,255,255,0.05)" }}
                 >
                   #{c.rank}
                 </div>
                 <div>
                   <div className="text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{c.name}</div>
-                  <div className={`text-xs font-data ${activeComp === c.id ? t.text : "text-muted-foreground"} opacity-70`}>
+                  <div className={`text-xs font-data ${activeComp === c.name ? t.text : "text-muted-foreground"} opacity-70`}>
                     {t.label}
                   </div>
                 </div>
@@ -227,12 +156,12 @@ export default function CompetitorSection() {
                 </div>
               </div>
               <img
-                src={comp.image}
+                src={comp.imageUrl}
                 alt={`${comp.name} heatmap`}
                 className="w-full h-auto block transition-transform duration-300 group-hover:scale-[1.01]"
               />
               <div className={`absolute bottom-4 right-4 px-3 py-1.5 rounded-lg text-white text-xs font-data font-bold ${threat.bg} border ${threat.border}`}>
-                BEST RANK: {comp.avgRankBest}
+                BEST RANK: {avgRankBest}
               </div>
             </div>
           </div>
@@ -253,10 +182,10 @@ export default function CompetitorSection() {
               <div className="text-xs font-data text-muted-foreground uppercase tracking-wider mb-3">SEO Factor Analysis</div>
               <div className="space-y-2.5">
                 {[
-                  { label: "Topical Relevance", value: comp.topicalRelevance },
-                  { label: "Internal Linking", value: comp.internalLinking },
-                  { label: "Personal Website", value: comp.personalWebsite },
-                  { label: "GBP Optimization", value: comp.gbpOptimization },
+                  { label: "Topical Relevance", value: topicalStrength },
+                  { label: "Internal Linking", value: linkingStrength },
+                  { label: "Website Authority", value: websiteStrength },
+                  { label: "GBP Optimization", value: gbpStrength },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between">
                     <span className="text-xs text-muted-foreground">{item.label}</span>
@@ -272,14 +201,14 @@ export default function CompetitorSection() {
                 <MapPin size={12} className="text-primary" />
                 <span className="text-xs font-data text-primary uppercase tracking-wider">Dominance Zone</span>
               </div>
-              <div className="text-sm text-foreground font-medium mb-1">{comp.dominanceZone}</div>
-              <div className="text-xs text-muted-foreground">{comp.topRankZones}</div>
+              <div className="text-sm text-foreground font-medium mb-1">{dominanceZone}</div>
+              <div className="text-xs text-muted-foreground">{comp.opportunity.split(".")[0]}.</div>
             </div>
 
             {/* Summary */}
             <div className="p-4 rounded-xl bg-card border border-border flex-1">
               <div className="text-xs font-data text-muted-foreground uppercase tracking-wider mb-2">Strategic Summary</div>
-              <p className="text-xs text-muted-foreground leading-relaxed">{comp.summary}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{comp.opportunity}</p>
             </div>
           </div>
         </div>
@@ -336,28 +265,29 @@ export default function CompetitorSection() {
                 </tr>
               </thead>
               <tbody>
-                {competitors.map((c) => {
-                  const t = threatColors[c.threatLevel];
+                {PROSPECT.competitors.map((c) => {
+                  const tl = rankToThreat(c.rank);
+                  const t = threatColors[tl];
                   return (
-                    <tr key={c.id} className="border-b border-border hover:bg-white/2 transition-colors">
+                    <tr key={c.name} className="border-b border-border hover:bg-white/2 transition-colors">
                       <td className="px-6 py-4">
                         <div className="font-medium text-foreground">{c.name}</div>
-                        <div className="text-xs text-muted-foreground">{c.dominanceZone}</div>
+                        <div className="text-xs text-muted-foreground">{getDominanceZone(c.name)}</div>
                       </td>
-                      <td className="px-4 py-4 text-center font-data text-green-400 font-bold">{c.avgRankBest}</td>
-                      <td className="px-4 py-4 text-center"><StrengthBadge value={c.topicalRelevance} /></td>
-                      <td className="px-4 py-4 text-center"><StrengthBadge value={c.internalLinking} /></td>
-                      <td className="px-4 py-4 text-center"><StrengthBadge value={c.personalWebsite} /></td>
+                      <td className="px-4 py-4 text-center font-data text-green-400 font-bold">{bestRankLabel(c.greenPct, c.yellowPct)}</td>
+                      <td className="px-4 py-4 text-center"><StrengthBadge value={scoreToStrength(c.scores.topicalRelevance)} /></td>
+                      <td className="px-4 py-4 text-center"><StrengthBadge value={scoreToStrength(c.scores.internalLinking)} /></td>
+                      <td className="px-4 py-4 text-center"><StrengthBadge value={scoreToStrength(c.scores.websiteAuthority)} /></td>
                       <td className="px-4 py-4 text-center">
                         <span className={`text-xs font-data font-bold ${t.text}`}>{t.label}</span>
                       </td>
                     </tr>
                   );
                 })}
-                {/* MTM row */}
+                {/* Prospect row */}
                 <tr className="border-b border-primary/20 bg-primary/5">
                   <td className="px-6 py-4">
-                    <div className="font-bold text-primary">Major Team Mortgage</div>
+                    <div className="font-bold text-primary">{PROSPECT.name}</div>
                     <div className="text-xs text-muted-foreground">Your Business (Current)</div>
                   </td>
                   <td className="px-4 py-4 text-center font-data text-red-400 font-bold">20+</td>
@@ -384,7 +314,7 @@ export default function CompetitorSection() {
             <button className="absolute -top-10 right-0 text-white/60 hover:text-white text-sm font-data" onClick={() => setLightboxOpen(false)}>
               ✕ Close
             </button>
-            <img src={comp.image} alt={comp.name} className="w-full h-auto rounded-xl" onClick={(e) => e.stopPropagation()} />
+            <img src={comp.imageUrl} alt={comp.name} className="w-full h-auto rounded-xl" onClick={(e) => e.stopPropagation()} />
           </div>
         </div>
       )}

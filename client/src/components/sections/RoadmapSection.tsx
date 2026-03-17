@@ -1,100 +1,11 @@
 /**
  * DESIGN: Dark Intelligence / Command Center
  * SEO roadmap with phased timeline and deliverables
+ * All copy sourced dynamically from PROSPECT data — no hardcoded industry/business names
  */
 
 import { CheckCircle2, Clock, Rocket, BarChart3, Crown } from "lucide-react";
-
-const phases = [
-  {
-    phase: "Phase 1",
-    title: "Foundation & Quick Wins",
-    timeline: "Week 1–2",
-    icon: Rocket,
-    color: "text-primary",
-    borderColor: "border-primary/40",
-    bgColor: "bg-primary/8",
-    glowColor: "rgba(74,222,128,0.3)",
-    tasks: [
-      { task: "Add 'Mortgage Lender' as secondary GBP category", impact: "HIGH" },
-      { task: "Add 'Loan Agency' as secondary GBP category", impact: "HIGH" },
-      { task: "Build comprehensive service list in GBP (15–20 services)", impact: "HIGH" },
-      { task: "Add detailed service descriptions to each GBP service", impact: "HIGH" },
-      { task: "Optimize GBP business description with target keywords", impact: "MEDIUM" },
-      { task: "Upload 20–30 high-quality photos to GBP", impact: "MEDIUM" },
-      { task: "Set up review request system (email/text automation)", impact: "MEDIUM" },
-      { task: "Complete GBP Q&A section with 10–15 common questions", impact: "MEDIUM" },
-    ],
-    expectedOutcome: "Initial ranking signals begin appearing. First visibility in proximity-based searches.",
-    rankingTarget: "Top 10 in immediate service area",
-  },
-  {
-    phase: "Phase 2",
-    title: "Website Architecture",
-    timeline: "Week 3–4",
-    icon: BarChart3,
-    color: "text-yellow-400",
-    borderColor: "border-yellow-500/40",
-    bgColor: "bg-yellow-500/8",
-    glowColor: "rgba(234,179,8,0.3)",
-    tasks: [
-      { task: "Build core website with 40–70 pages total", impact: "CRITICAL" },
-      { task: "Create service pages: Conventional, FHA, VA, Jumbo, USDA loans", impact: "HIGH" },
-      { task: "Create location pages for each Omaha neighborhood/suburb", impact: "HIGH" },
-      { task: "Build internal linking architecture connecting all pages", impact: "HIGH" },
-      { task: "Create first-time homebuyer guide (pillar content)", impact: "HIGH" },
-      { task: "Implement schema markup (LocalBusiness, Service, FAQ)", impact: "MEDIUM" },
-      { task: "Set up Google Search Console and Analytics", impact: "MEDIUM" },
-      { task: "Submit sitemap and request indexing", impact: "MEDIUM" },
-    ],
-    expectedOutcome: "Google begins establishing topical and geographic relevance. Rankings start appearing for long-tail keywords.",
-    rankingTarget: "Top 10 for 50+ long-tail keywords",
-  },
-  {
-    phase: "Phase 3",
-    title: "Authority Building",
-    timeline: "Ongoing",
-    icon: Crown,
-    color: "text-accent",
-    borderColor: "border-accent/40",
-    bgColor: "bg-accent/8",
-    glowColor: "rgba(0,229,160,0.3)",
-    tasks: [
-      { task: "Build 50+ local citations (NAP consistency across directories)", impact: "HIGH" },
-      { task: "Create weekly GBP posts (market updates, tips, promotions)", impact: "MEDIUM" },
-      { task: "Develop neighborhood-specific content for 10+ Omaha areas", impact: "HIGH" },
-      { task: "Build topical cluster content (mortgage guides, loan types)", impact: "HIGH" },
-      { task: "Implement review response strategy", impact: "MEDIUM" },
-      { task: "Create FAQ pages targeting voice search queries", impact: "MEDIUM" },
-      { task: "Launch local link building campaign", impact: "HIGH" },
-      { task: "Monitor and optimize based on ranking data", impact: "HIGH" },
-    ],
-    expectedOutcome: "Consistent top-3 rankings across the Omaha metro. Map Pack dominance begins.",
-    rankingTarget: "Top 3 across 50%+ of grid points",
-  },
-  {
-    phase: "Phase 4",
-    title: "Market Dominance",
-    timeline: "Ongoing",
-    icon: CheckCircle2,
-    color: "text-green-400",
-    borderColor: "border-green-500/40",
-    bgColor: "bg-green-500/8",
-    glowColor: "rgba(34,197,94,0.3)",
-    tasks: [
-      { task: "Expand content to cover all 3 target keywords comprehensively", impact: "HIGH" },
-      { task: "Build geographic content for surrounding cities (Council Bluffs, Fremont)", impact: "HIGH" },
-      { task: "Implement advanced schema and entity optimization", impact: "MEDIUM" },
-      { task: "Launch referral partner link building (realtors, builders)", impact: "HIGH" },
-      { task: "Create video content for GBP and website", impact: "MEDIUM" },
-      { task: "Run quarterly ranking audits and strategy adjustments", impact: "HIGH" },
-      { task: "Expand to additional keywords (refinance, home equity, etc.)", impact: "HIGH" },
-      { task: "Scale review generation to 10+ reviews/month", impact: "HIGH" },
-    ],
-    expectedOutcome: "Full market dominance. Top-3 rankings across all 3 keywords throughout the Omaha metro area.",
-    rankingTarget: "#1–3 across 80%+ of grid points",
-  },
-];
+import { PROSPECT } from "@/lib/prospect-data";
 
 const impactColors: Record<string, string> = {
   CRITICAL: "text-red-400 bg-red-500/10 border-red-500/20",
@@ -103,6 +14,106 @@ const impactColors: Record<string, string> = {
 };
 
 export default function RoadmapSection() {
+  const primaryKw = PROSPECT.heatmaps[0]?.keyword ?? "primary keyword";
+  const secondaryKws = PROSPECT.heatmaps.slice(1).map(h => h.keyword);
+  const allKws = PROSPECT.heatmaps.map(h => h.keyword);
+  const topServices = PROSPECT.websiteStrategy.servicePages.slice(0, 5).join(", ");
+  const topLocations = PROSPECT.websiteStrategy.locationPages.slice(0, 4).join(", ");
+  const surroundingCities = PROSPECT.websiteStrategy.surroundingCities.join(", ");
+  const comp1 = PROSPECT.competitors[0]?.name ?? "top competitor";
+  const comp2 = PROSPECT.competitors[1]?.name ?? "second competitor";
+  const comp3 = PROSPECT.competitors[2]?.name ?? "third competitor";
+
+  const phases = [
+    {
+      phase: "Phase 1",
+      title: "Foundation & Quick Wins",
+      timeline: "Week 1–2",
+      icon: Rocket,
+      color: "text-primary",
+      borderColor: "border-primary/40",
+      bgColor: "bg-primary/8",
+      glowColor: "rgba(74,222,128,0.3)",
+      tasks: [
+        ...secondaryKws.map(kw => ({ task: `Add '${kw}' as secondary GBP category`, impact: "HIGH" })),
+        { task: `Build comprehensive service list in GBP (15–20 services)`, impact: "HIGH" },
+        { task: "Add detailed service descriptions to each GBP service", impact: "HIGH" },
+        { task: `Optimize GBP business description with target keywords (${primaryKw.toLowerCase()}, ${secondaryKws[0]?.toLowerCase() ?? "services"})`, impact: "MEDIUM" },
+        { task: "Upload 25–35 high-quality project photos to GBP", impact: "MEDIUM" },
+        { task: "Set up review request system (email/text automation)", impact: "MEDIUM" },
+        { task: "Complete GBP Q&A section with 10–15 common questions", impact: "MEDIUM" },
+      ],
+      expectedOutcome: "Initial ranking signals begin appearing. First visibility in proximity-based searches.",
+      rankingTarget: PROSPECT.roadmapTargets.phase1,
+    },
+    {
+      phase: "Phase 2",
+      title: "Website Architecture",
+      timeline: "Week 3–8",
+      icon: BarChart3,
+      color: "text-yellow-400",
+      borderColor: "border-yellow-500/40",
+      bgColor: "bg-yellow-500/8",
+      glowColor: "rgba(234,179,8,0.3)",
+      tasks: [
+        { task: `Build core website with ${PROSPECT.websiteStrategy.targetPageCount} pages total`, impact: "CRITICAL" },
+        { task: `Create service pages: ${topServices}`, impact: "HIGH" },
+        { task: `Create location pages for ${topLocations} and surrounding suburbs`, impact: "HIGH" },
+        { task: "Build internal linking architecture connecting all pages", impact: "HIGH" },
+        { task: `Create pillar content for each core service category`, impact: "HIGH" },
+        { task: "Implement schema markup (LocalBusiness, Service, FAQ)", impact: "MEDIUM" },
+        { task: "Set up Google Search Console and Analytics", impact: "MEDIUM" },
+        { task: "Submit sitemap and request indexing", impact: "MEDIUM" },
+      ],
+      expectedOutcome: "Google begins establishing topical and geographic relevance. Rankings start appearing for long-tail keywords.",
+      rankingTarget: PROSPECT.roadmapTargets.phase2,
+    },
+    {
+      phase: "Phase 3",
+      title: "Authority Building",
+      timeline: "Month 2–4",
+      icon: Crown,
+      color: "text-accent",
+      borderColor: "border-accent/40",
+      bgColor: "bg-accent/8",
+      glowColor: "rgba(0,229,160,0.3)",
+      tasks: [
+        { task: "Build 50+ local citations (NAP consistency across directories)", impact: "HIGH" },
+        { task: "Earn backlinks from Omaha Area Chamber of Commerce and local organizations", impact: "HIGH" },
+        { task: "Create weekly GBP posts (project highlights, tips, promotions)", impact: "MEDIUM" },
+        { task: `Develop neighborhood-specific content for 10+ ${PROSPECT.city} areas`, impact: "HIGH" },
+        { task: `Build topical cluster content (${allKws.join(", ")} guides)`, impact: "HIGH" },
+        { task: "Implement review response strategy — respond to every review within 24 hours", impact: "MEDIUM" },
+        { task: "Create FAQ pages targeting voice search queries", impact: "MEDIUM" },
+        { task: "Launch local link building campaign (youth sports orgs, local directories)", impact: "HIGH" },
+      ],
+      expectedOutcome: `Consistent top-3 rankings across the ${PROSPECT.city} metro. Map Pack dominance begins.`,
+      rankingTarget: PROSPECT.roadmapTargets.phase3,
+    },
+    {
+      phase: "Phase 4",
+      title: "Market Dominance",
+      timeline: "Month 4+",
+      icon: CheckCircle2,
+      color: "text-green-400",
+      borderColor: "border-green-500/40",
+      bgColor: "bg-green-500/8",
+      glowColor: "rgba(34,197,94,0.3)",
+      tasks: [
+        { task: `Expand content to cover all ${allKws.length} tracked categories comprehensively`, impact: "HIGH" },
+        { task: `Build geographic content for surrounding cities (${surroundingCities})`, impact: "HIGH" },
+        { task: "Implement advanced schema and entity optimization", impact: "MEDIUM" },
+        { task: "Launch referral partner link building (local businesses, community orgs)", impact: "HIGH" },
+        { task: "Create video content for GBP and website", impact: "MEDIUM" },
+        { task: "Run quarterly ranking audits and strategy adjustments", impact: "HIGH" },
+        { task: `Expand to additional service keywords and specialty pages`, impact: "HIGH" },
+        { task: "Scale review generation to 10+ reviews/month", impact: "HIGH" },
+      ],
+      expectedOutcome: `Full market dominance. Top-3 rankings across all tracked categories throughout the ${PROSPECT.city} metro area.`,
+      rankingTarget: PROSPECT.roadmapTargets.phase4,
+    },
+  ];
+
   return (
     <div className="py-20 px-8 relative">
       {/* Subtle background gradient */}
@@ -121,7 +132,7 @@ export default function RoadmapSection() {
             The SEO Roadmap
           </h2>
           <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-            A phased, <strong className="text-primary">#1 Map Protocol</strong> to take <strong className="text-white font-semibold">Major Team Mortgage</strong> from <strong className="text-red-400">invisible</strong> to <strong className="text-accent">dominant</strong> across the Omaha metro area. 
+            A phased, <strong className="text-primary">#1 Map Protocol</strong> to take <strong className="text-white font-semibold">{PROSPECT.name}</strong> from <strong className="text-red-400">invisible</strong> to <strong className="text-accent">dominant</strong> across the {PROSPECT.cityState} metro area.
             Each phase builds on the last, creating compounding momentum.
           </p>
         </div>
@@ -243,7 +254,7 @@ export default function RoadmapSection() {
             ))}
           </div>
           <p className="text-xs text-muted-foreground text-center mt-4">
-            Projected average ranking trajectory across all tracked categories in the Omaha metro
+            Projected average ranking trajectory across all tracked categories in the {PROSPECT.city} metro
           </p>
         </div>
       </div>

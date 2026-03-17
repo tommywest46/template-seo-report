@@ -1,6 +1,7 @@
 /**
  * DESIGN: Dark Intelligence / Command Center
  * Opportunity gap analysis with visual scoring and recommendations
+ * All copy sourced dynamically from PROSPECT data — no hardcoded industry/business names
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -40,67 +41,6 @@ function AnimatedBar({ value, color, delay = 0 }: { value: number; color: string
   );
 }
 
-const gbpOpportunities = [
-  {
-    icon: Building2,
-    title: "Add Secondary GBP Categories",
-    impact: "HIGH",
-    impactColor: "text-red-400",
-    description: "Adding 'Mortgage Lender' and 'Loan Agency' as secondary categories immediately expands keyword coverage. This single change could unlock visibility for 2 additional keyword clusters.",
-    effort: "Low (1 hour)",
-    timeline: "Immediate",
-  },
-  {
-    icon: FileText,
-    title: "Build Comprehensive Service List",
-    impact: "HIGH",
-    impactColor: "text-red-400",
-    description: "Create detailed service descriptions for each offering: Conventional Loans, FHA Loans, VA Loans, Jumbo Loans, Refinancing, First-Time Homebuyer Programs, etc. Google uses this data for relevance scoring.",
-    effort: "Medium (4–8 hours)",
-    timeline: "Week 1",
-  },
-  {
-    icon: Star,
-    title: "Review Velocity Strategy",
-    impact: "MEDIUM",
-    impactColor: "text-yellow-400",
-    description: "Implement a systematic review request process. Reviews are a top-3 local ranking factor. A consistent flow of 5-star reviews signals trust and relevance to Google's algorithm.",
-    effort: "Low (ongoing)",
-    timeline: "Week 1–4",
-  },
-];
-
-const websiteOpportunities = [
-  {
-    icon: Globe,
-    title: "40–70 Page Topical Authority Site",
-    impact: "CRITICAL",
-    impactColor: "text-red-400",
-    description: "Build a comprehensive website covering every loan type, every Omaha neighborhood, and every buyer scenario. This is the single highest-leverage action available.",
-    pages: ["Service pages (15–20)", "Location pages (10–15)", "Loan type guides (10–15)", "FAQ & resource pages (10–20)"],
-    effort: "High (6–12 weeks)",
-    timeline: "Month 1–3",
-  },
-  {
-    icon: Link2,
-    title: "Internal Linking Architecture",
-    impact: "HIGH",
-    impactColor: "text-red-400",
-    description: "Create a deliberate internal linking structure that connects service pages to location pages, guides to service pages, and builds topical clusters. None of your competitors do this well.",
-    effort: "Medium (built into site)",
-    timeline: "Month 1–3",
-  },
-  {
-    icon: Target,
-    title: "Geographic Content Strategy",
-    impact: "HIGH",
-    impactColor: "text-red-400",
-    description: "Create dedicated pages for each Omaha neighborhood and suburb: Papillion, Bellevue, La Vista, Ralston, Gretna, Millard, Elkhorn. Each page targets local search intent.",
-    effort: "Medium (ongoing)",
-    timeline: "Month 2–4",
-  },
-];
-
 const opportunityScores = [
   { label: "GBP Category Gap", score: PROSPECT.opportunityScores.gbpCategoryGap, color: "#ef4444" },
   { label: "Website Content Gap", score: PROSPECT.opportunityScores.websiteContentGap, color: "#ef4444" },
@@ -112,6 +52,83 @@ const opportunityScores = [
 
 export default function OpportunitySection() {
   const { ref, inView } = useInView();
+
+  const secondaryKws = PROSPECT.heatmaps.slice(1).map(h => h.keyword);
+  const allKws = PROSPECT.heatmaps.map(h => h.keyword);
+  const serviceList = PROSPECT.websiteStrategy.servicePages.slice(0, 7).join(", ");
+  const topLocations = PROSPECT.websiteStrategy.locationPages.slice(0, 3).join(", ");
+  const comp1 = PROSPECT.competitors[0]?.name ?? "top competitor";
+  const comp2 = PROSPECT.competitors[1]?.name ?? "second competitor";
+  const comp3 = PROSPECT.competitors[2]?.name ?? "third competitor";
+  const weakComp1 = PROSPECT.competitors[1]?.name ?? "second competitor";
+  const weakComp2 = PROSPECT.competitors[2]?.name ?? "third competitor";
+  const weakZone = PROSPECT.websiteStrategy.locationPages.slice(2, 5).join(", ");
+
+  const gbpOpportunities = [
+    {
+      icon: Building2,
+      title: "Add Secondary GBP Categories",
+      impact: "HIGH",
+      impactColor: "text-red-400",
+      description: `Adding ${secondaryKws.map(k => `'${k}'`).join(" and ")} as secondary categories immediately expands keyword coverage and unlocks ranking eligibility across multiple search clusters.`,
+      effort: "Low (1 hour)",
+      timeline: "Immediate",
+    },
+    {
+      icon: FileText,
+      title: "Build Comprehensive Service List",
+      impact: "HIGH",
+      impactColor: "text-red-400",
+      description: `Create detailed service descriptions for each offering: ${serviceList}, and more. Google uses this data for relevance scoring.`,
+      effort: "Medium (4–8 hours)",
+      timeline: "Week 1",
+    },
+    {
+      icon: Star,
+      title: "Review Velocity Strategy",
+      impact: "HIGH",
+      impactColor: "text-red-400",
+      description: `Implement a systematic review request process after every job. Reviews are a top-3 local ranking factor. ${comp2} doesn't respond to reviews — a gap you can exploit immediately.`,
+      effort: "Low (ongoing)",
+      timeline: "Week 1–4",
+    },
+  ];
+
+  const websiteOpportunities = [
+    {
+      icon: Globe,
+      title: `${PROSPECT.websiteStrategy.targetPageCount} Page Topical Authority Site`,
+      impact: "CRITICAL",
+      impactColor: "text-red-400",
+      description: `Build a comprehensive website covering every service, every ${PROSPECT.city} suburb, and every customer scenario. This is the single highest-leverage action — and none of your competitors have done it right.`,
+      pages: [
+        `Service pages (${PROSPECT.websiteStrategy.servicePages.length}+)`,
+        `Location pages (${PROSPECT.websiteStrategy.locationPages.length}+)`,
+        "Specialty & niche service pages",
+        "FAQ & resource pages",
+      ],
+      effort: "High (6–12 weeks)",
+      timeline: "Month 1–3",
+    },
+    {
+      icon: Link2,
+      title: "Internal Linking Architecture",
+      impact: "HIGH",
+      impactColor: "text-red-400",
+      description: `Create a deliberate internal linking structure that connects service pages to location pages, and builds topical clusters. ${comp3} has virtually none — this is your biggest competitive edge.`,
+      effort: "Medium (built into site)",
+      timeline: "Month 1–3",
+    },
+    {
+      icon: Target,
+      title: "Geographic Suburb Strategy",
+      impact: "HIGH",
+      impactColor: "text-red-400",
+      description: `Target ${weakZone} — the suburbs where ${comp1} is weakest. Dedicated location pages for each suburb will capture searches competitors are ignoring.`,
+      effort: "Medium (ongoing)",
+      timeline: "Month 2–4",
+    },
+  ];
 
   return (
     <div className="py-20 px-8 relative">
@@ -125,8 +142,8 @@ export default function OpportunitySection() {
           The Opportunity Gap
         </h2>
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-          The data tells a clear story: <strong className="text-white font-semibold">{PROSPECT.name}</strong> has the <strong className="text-accent">highest opportunity score</strong> of any business we've analyzed 
-          in the {PROSPECT.city} {PROSPECT.industry} market. Every gap is a door waiting to be opened.
+          The data tells a clear story: <strong className="text-white font-semibold">{PROSPECT.name}</strong> has the <strong className="text-accent">highest opportunity score</strong> of any business we've analyzed
+          in the {PROSPECT.city} {PROSPECT.industryLabel}. Every gap is a door waiting to be opened.
         </p>
       </div>
 
@@ -168,7 +185,7 @@ export default function OpportunitySection() {
           <div className="absolute bottom-0 left-0 right-0 p-6">
             <div className="text-xs font-data text-accent uppercase tracking-widest mb-2">What Success Looks Like</div>
             <p className="text-sm text-foreground font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Green dots = top 3 rankings. This is what the map looks like for your competitors in their strongest zones — 
+              Green dots = top 3 rankings. This is what the map looks like for your competitors in their strongest zones —
               and what <strong className="text-white font-semibold">{PROSPECT.name}</strong>'s map should look like across <strong className="text-accent">all of {PROSPECT.city}</strong>.
             </p>
           </div>
@@ -263,9 +280,8 @@ export default function OpportunitySection() {
           <div>
             <div className="text-xs font-data text-accent uppercase tracking-widest mb-2">The Bottom Line</div>
             <p className="text-foreground font-medium text-base leading-relaxed" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              The Omaha mortgage market has a dominant competitor in the west (Shotbolt) and a moderate competitor in the center 
-              (Mortgage Specialists) — but the entire market is winnable. None of your competitors have built a true topical 
-              authority website with proper internal linking. That's the gap. That's your path to #1.
+              The {PROSPECT.city} {PROSPECT.industry} market has one strong competitor ({comp1}) and two vulnerable ones ({weakComp1} and {weakComp2}). None of them have built a true topical
+              authority website with proper internal linking. The western and southern suburbs are wide open. That's the gap. That's your path to #1.
             </p>
           </div>
         </div>

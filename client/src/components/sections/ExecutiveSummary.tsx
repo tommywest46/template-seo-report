@@ -46,8 +46,8 @@ const findings = [
     bg: "bg-yellow-500/10",
     border: "border-yellow-500/20",
     title: "Weak GBP Category Structure",
-    descriptionJsx: (<>The Google Business Profile is missing secondary categories <strong className="text-yellow-400">'Mortgage Lender'</strong> and <strong className="text-yellow-400">'Loan Agency'</strong> — limiting visibility to <strong className="text-red-400">only one keyword cluster</strong> when competitors rank for all three.</>),
-    description: "The Google Business Profile is missing secondary categories 'Mortgage Lender' and 'Loan Agency' — limiting visibility to only one keyword cluster when competitors rank for all three.",
+    descriptionJsx: (<>The Google Business Profile is missing secondary categories for <strong className="text-yellow-400">{PROSPECT.heatmaps.slice(1).map(h => `'${h.keyword}'`).join(' and ')}</strong> — limiting visibility to <strong className="text-red-400">only one keyword cluster</strong> when competitors rank for all tracked categories.</>),
+    description: `The Google Business Profile is missing secondary categories for ${PROSPECT.heatmaps.slice(1).map(h => h.keyword).join(' and ')} — limiting visibility to only one keyword cluster when competitors rank for all tracked categories.`,
   },
   {
     icon: Globe,
@@ -55,13 +55,14 @@ const findings = [
     bg: "bg-primary/10",
     border: "border-primary/20",
     title: "No Topical Authority Website",
-    descriptionJsx: (<>Without a comprehensive website (<strong className="text-primary">{PROSPECT.websiteStrategy.targetPageCount} pages</strong>) covering services, loan types, and {PROSPECT.city} neighborhoods, Google cannot establish topical and geographic relevance for ranking.</>),
+    descriptionJsx: (<>Without a comprehensive website (<strong className="text-primary">{PROSPECT.websiteStrategy.targetPageCount} pages</strong>) covering services, locations, and {PROSPECT.city} neighborhoods, Google cannot establish topical and geographic relevance for ranking.</>),
     description: `Without a comprehensive website (${PROSPECT.websiteStrategy.targetPageCount} pages) covering services and ${PROSPECT.city} neighborhoods, Google cannot establish topical relevance.`,
   },
 ];
 
 const opportunities = [
-  `Add '${PROSPECT.heatmaps[1]?.keyword}' and '${PROSPECT.heatmaps[2]?.keyword}' as secondary GBP categories`,
+  `Add ${PROSPECT.heatmaps.slice(1).map(h => `'${h.keyword}'`).join(' and ')} as secondary GBP categories`,
+
   "Build comprehensive service list with detailed descriptions in GBP",
   `Create a ${PROSPECT.websiteStrategy.targetPageCount} page website with strong topical + geographic relevance`,
   "Implement internal linking structure across all service and location pages",
@@ -84,7 +85,7 @@ export default function ExecutiveSummary() {
           Executive Summary
         </h2>
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-          This intelligence report analyzes <strong className="text-white font-semibold">{PROSPECT.name}</strong>'s current local SEO position across the <strong className="text-foreground">{PROSPECT.cityState}</strong> market. 
+          This visibility report analyzes <strong className="text-white font-semibold">{PROSPECT.name}</strong>'s current local SEO position across the <strong className="text-foreground">{PROSPECT.cityState}</strong> market. 
           The data reveals a <strong className="text-red-400">significant visibility gap</strong> — and an equally significant <strong className="text-accent">opportunity for rapid growth</strong>.
         </p>
       </div>
@@ -128,9 +129,7 @@ export default function ExecutiveSummary() {
           </h3>
           <div className="space-y-3">
             {[
-              { label: "Mortgage Broker Rankings", value: "20+ (Not Ranking)", color: "bg-red-500" },
-              { label: "Mortgage Lender Rankings", value: "20+ (Not Ranking)", color: "bg-red-500" },
-              { label: "Loan Agency Rankings", value: "20+ (Not Ranking)", color: "bg-red-500" },
+              ...PROSPECT.heatmaps.map(h => ({ label: `${h.keyword} Rankings`, value: "20+ (Not Ranking)", color: "bg-red-500" })),
               { label: "GBP Secondary Categories", value: "Missing", color: "bg-orange-500" },
               { label: "Website Topical Depth", value: "Insufficient", color: "bg-orange-500" },
               { label: "Internal Linking", value: "None", color: "bg-red-500" },

@@ -28,7 +28,7 @@ const colorLegend = [
 ];
 
 export default function HeatmapSection() {
-  const [activeTab, setActiveTab] = useState("broker");
+  const [activeTab, setActiveTab] = useState(PROSPECT.heatmaps[0]?.id ?? "painter");
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const active = heatmaps.find(h => h.id === activeTab)!;
@@ -92,7 +92,7 @@ export default function HeatmapSection() {
               <div className="flex items-center gap-2">
                 <Map size={14} className="text-primary" />
                 <span className="text-xs font-data text-white font-medium">{active.keyword}</span>
-                <span className="text-xs font-data text-white/70 font-semibold">— Major Team Mortgage</span>
+                <span className="text-xs font-data text-white/70 font-semibold">— {PROSPECT.name}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-data text-white/50">{active.date}</span>
@@ -102,7 +102,7 @@ export default function HeatmapSection() {
 
             <img
               src={active.image}
-              alt={`${active.keyword} heatmap for Major Team Mortgage`}
+              alt={`${active.keyword} heatmap for ${PROSPECT.name}`}
               className="w-full h-auto block transition-transform duration-300 group-hover:scale-[1.01]"
             />
 
@@ -151,8 +151,8 @@ export default function HeatmapSection() {
           <div className="p-4 rounded-xl border border-primary/20" style={{ background: "rgba(74,222,128,0.06)" }}>
             <div className="text-xs font-data text-primary uppercase tracking-wider mb-2">What This Means</div>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              Every day without visibility is <strong className="text-red-400">lost revenue</strong>. Homebuyers searching for mortgage services in Omaha 
-              are being captured by competitors — not <strong className="text-white font-semibold">Major Team Mortgage</strong>.
+              Every day without visibility is <strong className="text-red-400">lost revenue</strong>. Customers searching for {PROSPECT.heatmaps.map((h, i) => <span key={i}><strong className="text-yellow-400">{h.keyword.toLowerCase()}</strong>{i < PROSPECT.heatmaps.length - 1 ? ' and ' : ''}</span>)} in {PROSPECT.city}
+              are being captured by competitors — not <strong className="text-white font-semibold">{PROSPECT.name}</strong>.
             </p>
           </div>
         </div>
