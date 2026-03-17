@@ -243,7 +243,8 @@ export const PROSPECT = {
     name: "The Maps Guy",
     email: "tommy@themapsguy.io",
     bookingUrl: "https://themapsguy.io/calendar",
-    logoUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/7VL7DoJkUZwbU7F9ttq3qi/TheMapsGuy_Logo_Transparent_Dark_cc75bb3f.png",
+    logoUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/7VL7DoJkUZwbU7F9ttq3qi/TheMapsGuy_Logo_Transparent_Dark_cc75bb3f.png", // horizontal wordmark — login gate only
+    logoIconUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/7VL7DoJkUZwbU7F9ttq3qi/themapsguy-logo-transparent_f438e0b4.png", // icon-only — nav, CTA, etc.
   },
 };
 

@@ -99,7 +99,7 @@ export default function CTASection() {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <img
-                  src={PROSPECT.agency.logoUrl}
+                  src={(PROSPECT.agency as any).logoIconUrl ?? PROSPECT.agency.logoUrl}
                   alt={PROSPECT.agency.name}
                   className="h-12 w-auto object-contain max-w-[220px]"
                   style={{ filter: 'drop-shadow(0 0 8px rgba(74,222,128,0.2))' }}
@@ -203,7 +203,7 @@ export default function CTASection() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-3">
             <img
-              src={PROSPECT.agency.logoUrl}
+              src={(PROSPECT.agency as any).logoIconUrl ?? PROSPECT.agency.logoUrl}
               alt={PROSPECT.agency.name}
               className="h-7 w-auto object-contain opacity-80 max-w-[140px]"
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}

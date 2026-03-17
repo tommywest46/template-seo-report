@@ -8,7 +8,7 @@
 import { Menu, X, MapPin, BarChart3, Users, Lightbulb, Map, Target, Phone } from "lucide-react";
 import { PROSPECT } from "@/lib/prospect-data";
 
-const LOGO_URL = PROSPECT.agency.logoUrl;
+const LOGO_URL = (PROSPECT.agency as any).logoIconUrl ?? PROSPECT.agency.logoUrl;
 
 const navItems = [
   { id: "hero", label: "Overview", icon: MapPin, num: "00" },
