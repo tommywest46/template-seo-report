@@ -243,7 +243,7 @@ export const PROSPECT = {
     name: "The Maps Guy",
     email: "tommy@themapsguy.io",
     bookingUrl: "https://themapsguy.io/calendar",
-    logoUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/TheMapsGuy_Logo_Transparent_Dark_0d51dc8b.png",
+    logoUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/7VL7DoJkUZwbU7F9ttq3qi/TheMapsGuy_Logo_Transparent_Dark_cc75bb3f.png",
   },
 };
 
