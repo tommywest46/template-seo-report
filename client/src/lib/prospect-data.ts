@@ -24,6 +24,13 @@ export const PROSPECT = {
   industry: "PROSPECT_INDUSTRY",       // e.g. "painting" (lowercase, used in copy)
   industryLabel: "PROSPECT_INDUSTRY_LABEL", // e.g. "painting & home services market"
 
+  // ── Visibility Status ─────────────────────────────────────
+  // Controls ALL dynamic copy, colors, and framing across the report.
+  // "invisible"    → ranks 20+ across most of the map (all red/orange dots)
+  // "semi-visible" → mixed rankings, some top-3 zones but large gaps
+  // "visible"      → strong rankings, expanding to dominate metro
+  visibilityStatus: "invisible" as "invisible" | "semi-visible" | "visible",
+
   // ── Heatmap Data ───────────────────────────────────────────
   // Upload images via: manus-upload-file --webdev path/to/image.png
   // Then paste the returned CDN URL in imageUrl below.

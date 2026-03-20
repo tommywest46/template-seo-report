@@ -3,22 +3,28 @@
  * Hero section: two-column layout — left: headline + copy + CTAs, right: primary heatmap image
  * Background: #0B0F1A (Deep Navy), Primary: #4ADE80 (Brand Green), Accent: #FBBF24 (Signal Gold)
  * Fonts: Outfit (headings), Nunito Sans (body), JetBrains Mono (data)
+ *
+ * DYNAMIC: All copy, colors, and framing are driven by PROSPECT.visibilityStatus
+ * Set to "invisible", "semi-visible", or "visible" in prospect-data.ts
  */
 
 import { useEffect, useRef, useState } from "react";
-import { AlertTriangle, Calendar, ChevronDown, MapPin } from "lucide-react";
+import { AlertTriangle, Calendar, ChevronDown, MapPin, TrendingUp, Zap } from "lucide-react";
 import { PROSPECT } from "@/lib/prospect-data";
+import { getVisibilityConfig } from "@/lib/visibilityConfig";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV7RUpEjQymMGKrdVL/hero-bg-7aHuMzzvfawGLf2ZspRw8n.webp";
 
+const vc = getVisibilityConfig(PROSPECT.visibilityStatus);
+
+const primaryHeatmap = PROSPECT.heatmaps[0];
+
 const metrics = [
   { label: "Categories Tracked", value: PROSPECT.heatmaps.length, suffix: "", color: "#4ADE80", glow: "rgba(74,222,128,0.4)" },
-  { label: "Avg. Map Ranking", value: 20, suffix: "+", color: "#ef4444", glow: "rgba(239,68,68,0.4)" },
+  { label: "Avg. Map Ranking", value: vc.avgRankingValue, suffix: PROSPECT.visibilityStatus === "invisible" ? "+" : "", color: vc.avgRankingColor, glow: vc.avgRankingGlow },
   { label: "Grid Points Analyzed", value: PROSPECT.heatmaps[0]?.gridPoints ?? 156, suffix: "", color: "#FBBF24", glow: "rgba(251,191,36,0.4)" },
   { label: "Opportunity Score", value: PROSPECT.opportunityScores.overall, suffix: "%", color: "#4ADE80", glow: "rgba(74,222,128,0.4)" },
 ];
-
-const primaryHeatmap = PROSPECT.heatmaps[0];
 
 function CountUp({ target, duration = 1800 }: { target: number; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -84,9 +90,9 @@ export default function HeroSection() {
         {/* Top status bar */}
         <div className="flex items-center justify-between px-8 pt-5 pb-3">
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-red-500/30 bg-red-500/10">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-xs font-data text-red-400 uppercase tracking-widest">
+            <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full border ${vc.alertBadgeBorderColor} ${vc.alertBadgeBgColor}`}>
+              <span className={`w-1.5 h-1.5 rounded-full ${vc.alertBadgeDotColor} animate-pulse`} />
+              <span className={`text-xs font-data ${vc.alertBadgeTextColor} uppercase tracking-widest`}>
                 Confidential
               </span>
             </div>
@@ -108,10 +114,10 @@ export default function HeroSection() {
             <div>
               {/* Alert badge */}
               <div
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/40 bg-red-500/10 text-red-400 text-sm font-medium mb-8 w-fit transition-all duration-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border ${vc.alertBadgeBorderColor} ${vc.alertBadgeBgColor} ${vc.alertBadgeTextColor} text-sm font-medium mb-8 w-fit transition-all duration-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
               >
                 <AlertTriangle size={13} />
-                <span>Critical Visibility Gap Detected — {PROSPECT.cityState}</span>
+                <span>{vc.alertBadgeText} — {PROSPECT.cityState}</span>
               </div>
 
               {/* Headline */}
@@ -122,12 +128,12 @@ export default function HeroSection() {
                 >
                   <span className="text-foreground block">Your Business Is</span>
                   <span className="block" style={{
-                    background: "linear-gradient(135deg, #FF6B35, #FF3B3B, #FF6B35)",
+                    background: vc.headlineGradient,
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
                   }}>
-                    Invisible
+                    {vc.headlineWord}
                   </span>
                   <span className="text-foreground block">on Google Maps.</span>
                 </h1>
@@ -137,8 +143,12 @@ export default function HeroSection() {
                 className={`text-base md:text-lg text-muted-foreground max-w-xl mb-10 leading-relaxed transition-all duration-700 delay-200 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
                 style={{ fontFamily: 'Nunito Sans, sans-serif' }}
               >
-                Across <strong className="text-foreground">{PROSPECT.heatmaps[0]?.gridPoints ?? 156} geographic data points</strong> in the {PROSPECT.city} metro area, <strong className="text-white font-bold">{PROSPECT.name}</strong> ranks <strong className="text-red-400">outside the top 20</strong> across <strong className="text-yellow-400">{PROSPECT.heatmaps.length} categories</strong>.
-                This report reveals exactly what's happening — and the precise roadmap to dominate your market.
+                {vc.heroBodyCopy(
+                  PROSPECT.name,
+                  PROSPECT.heatmaps[0]?.gridPoints ?? 156,
+                  PROSPECT.city,
+                  PROSPECT.heatmaps.length
+                )}
               </p>
 
               {/* CTA buttons */}
@@ -175,14 +185,14 @@ export default function HeroSection() {
               {/* Glow halo behind the card */}
               <div
                 className="absolute inset-0 rounded-2xl blur-2xl opacity-25 -z-10 scale-95"
-                style={{ background: "radial-gradient(ellipse at center, #ef4444 0%, transparent 70%)" }}
+                style={{ background: `radial-gradient(ellipse at center, ${vc.heatmapCardGlowColor} 0%, transparent 70%)` }}
               />
 
               {/* Heatmap card */}
               <div
                 className="relative rounded-2xl overflow-hidden"
                 style={{
-                  border: "1px solid rgba(239,68,68,0.25)",
+                  border: `1px solid ${vc.heatmapCardBorderColor}`,
                   boxShadow: "0 0 0 1px rgba(255,255,255,0.06), 0 24px 60px rgba(0,0,0,0.6)",
                   background: "#0B0F1A",
                 }}
@@ -190,19 +200,19 @@ export default function HeroSection() {
                 {/* Label bar */}
                 <div
                   className="flex items-center justify-between px-4 py-2.5"
-                  style={{ background: "rgba(239,68,68,0.12)", borderBottom: "1px solid rgba(239,68,68,0.2)" }}
+                  style={{ background: vc.heatmapCardBgColor, borderBottom: `1px solid ${vc.heatmapCardBorderColor}` }}
                 >
                   <div className="flex items-center gap-2">
-                    <MapPin size={13} className="text-red-400" />
+                    <MapPin size={13} className={vc.heatmapCardLabelColor} />
                     <span
-                      className="text-xs font-bold uppercase tracking-widest text-red-400"
+                      className={`text-xs font-bold uppercase tracking-widest ${vc.heatmapCardLabelColor}`}
                       style={{ fontFamily: 'JetBrains Mono, monospace' }}
                     >
                       Current Rankings — {primaryHeatmap?.keyword ?? "Primary Category"}
                     </span>
                   </div>
                   <span
-                    className="text-xs font-data text-red-400/70 uppercase tracking-wider"
+                    className={`text-xs font-data ${vc.heatmapCardLabelColor} opacity-70 uppercase tracking-wider`}
                   >
                     {primaryHeatmap?.status ?? "CRITICAL"}
                   </span>
@@ -229,9 +239,9 @@ export default function HeroSection() {
                   style={{ background: "rgba(11,15,26,0.95)", borderTop: "1px solid rgba(255,255,255,0.06)" }}
                 >
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-500 inline-block" />
-                    <span className="text-xs text-red-400 font-data">
-                      {primaryHeatmap?.rankingOutsideTop20 ?? "—"} of {primaryHeatmap?.gridPoints ?? "—"} points ranked 20+
+                    <span className={`w-2.5 h-2.5 rounded-full ${vc.heatmapFooterDotColor} inline-block`} />
+                    <span className={`text-xs ${vc.heatmapFooterTextColor} font-data`}>
+                      {primaryHeatmap?.rankingTop3 ?? "—"} of {primaryHeatmap?.gridPoints ?? "—"} points ranked top 3
                     </span>
                   </div>
                   <span className="text-xs text-muted-foreground font-data">{PROSPECT.reportDate}</span>

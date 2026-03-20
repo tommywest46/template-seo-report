@@ -2,10 +2,15 @@
  * DESIGN: Dark Intelligence / Command Center
  * SEO roadmap with phased timeline and deliverables
  * All copy sourced dynamically from PROSPECT data — no hardcoded industry/business names
+ *
+ * DYNAMIC: "from" word, trajectory start rank, and phase timelines driven by PROSPECT.visibilityStatus
  */
 
 import { CheckCircle2, Clock, Rocket, BarChart3, Crown } from "lucide-react";
 import { PROSPECT } from "@/lib/prospect-data";
+import { getVisibilityConfig } from "@/lib/visibilityConfig";
+
+const vc = getVisibilityConfig(PROSPECT.visibilityStatus);
 
 const impactColors: Record<string, string> = {
   CRITICAL: "text-red-400 bg-red-500/10 border-red-500/20",
@@ -20,9 +25,6 @@ export default function RoadmapSection() {
   const topServices = PROSPECT.websiteStrategy.servicePages.slice(0, 5).join(", ");
   const topLocations = PROSPECT.websiteStrategy.locationPages.slice(0, 4).join(", ");
   const surroundingCities = PROSPECT.websiteStrategy.surroundingCities.join(", ");
-  const comp1 = PROSPECT.competitors[0]?.name ?? "top competitor";
-  const comp2 = PROSPECT.competitors[1]?.name ?? "second competitor";
-  const comp3 = PROSPECT.competitors[2]?.name ?? "third competitor";
 
   const phases = [
     {
@@ -49,7 +51,7 @@ export default function RoadmapSection() {
     {
       phase: "Phase 2",
       title: "Website Architecture",
-      timeline: "Week 3–8",
+      timeline: vc.phase2Timeline,
       icon: BarChart3,
       color: "text-yellow-400",
       borderColor: "border-yellow-500/40",
@@ -71,7 +73,7 @@ export default function RoadmapSection() {
     {
       phase: "Phase 3",
       title: "Authority Building",
-      timeline: "Month 2–4",
+      timeline: vc.phase3Timeline,
       icon: Crown,
       color: "text-accent",
       borderColor: "border-accent/40",
@@ -79,7 +81,7 @@ export default function RoadmapSection() {
       glowColor: "rgba(0,229,160,0.3)",
       tasks: [
         { task: "Build 50+ local citations (NAP consistency across directories)", impact: "HIGH" },
-        { task: "Earn backlinks from Omaha Area Chamber of Commerce and local organizations", impact: "HIGH" },
+        { task: `Earn backlinks from ${PROSPECT.city} Chamber of Commerce and local organizations`, impact: "HIGH" },
         { task: "Create weekly GBP posts (project highlights, tips, promotions)", impact: "MEDIUM" },
         { task: `Develop neighborhood-specific content for 10+ ${PROSPECT.city} areas`, impact: "HIGH" },
         { task: `Build topical cluster content (${allKws.join(", ")} guides)`, impact: "HIGH" },
@@ -93,7 +95,7 @@ export default function RoadmapSection() {
     {
       phase: "Phase 4",
       title: "Market Dominance",
-      timeline: "Month 4+",
+      timeline: vc.phase4Timeline,
       icon: CheckCircle2,
       color: "text-green-400",
       borderColor: "border-green-500/40",
@@ -114,6 +116,15 @@ export default function RoadmapSection() {
     },
   ];
 
+  // Trajectory chart — 4 bars: Now → Week 1 → Month 2 → Month 3
+  const startRank = vc.trajectoryStartRank;
+  const trajectoryData = [
+    { month: "Now",    rank: startRank,                                    color: vc.trajectoryStartColor },
+    { month: "Wk 1–2", rank: Math.max(1, Math.round(startRank * 0.75)),   color: "#f97316" },
+    { month: "Mo 2",   rank: Math.max(1, Math.round(startRank * 0.40)),   color: "#84cc16" },
+    { month: "Mo 3",   rank: Math.max(1, Math.round(startRank * 0.15)),   color: "#4ADE80" },
+  ];
+
   return (
     <div className="py-20 px-8 relative">
       {/* Subtle background gradient */}
@@ -132,7 +143,7 @@ export default function RoadmapSection() {
             The SEO Roadmap
           </h2>
           <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-            A phased, <strong className="text-primary">#1 Map Protocol</strong> to take <strong className="text-white font-semibold">{PROSPECT.name}</strong> from <strong className="text-red-400">invisible</strong> to <strong className="text-accent">dominant</strong> across the {PROSPECT.cityState} metro area.
+            A phased, <strong className="text-primary">#1 Map Protocol</strong> to take <strong className="text-white font-semibold">{PROSPECT.name}</strong> from <strong className={vc.roadmapFromColor}>{vc.roadmapFromWord}</strong> to <strong className="text-accent">dominant</strong> across the {PROSPECT.cityState} metro area.
             Each phase builds on the last, creating compounding momentum.
           </p>
         </div>
@@ -217,21 +228,13 @@ export default function RoadmapSection() {
           </div>
         </div>
 
-        {/* Summary timeline bar */}
+        {/* Summary timeline bar — 3-Month Ranking Trajectory */}
         <div className="mt-12 p-6 rounded-xl bg-card border border-border">
           <h4 className="font-semibold text-foreground mb-6 text-center" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700 }}>
-            6-Month Ranking Trajectory
+            3-Month Ranking Trajectory
           </h4>
-          <div className="flex items-end gap-2 h-24 mb-3">
-            {[
-              { month: "Now", rank: 20, color: "#ef4444" },
-              { month: "Wk 1–2", rank: 16, color: "#f97316" },
-              { month: "Wk 3–4", rank: 11, color: "#eab308" },
-              { month: "Mo 2", rank: 7, color: "#84cc16" },
-              { month: "Mo 3", rank: 4, color: "#22c55e" },
-              { month: "Mo 4+", rank: 2, color: "#4ADE80" },
-              { month: "Ongoing", rank: 1, color: "#4ADE80" },
-            ].map((item, i) => (
+          <div className="flex items-end gap-4 h-24 mb-3">
+            {trajectoryData.map((item, i) => (
               <div key={i} className="flex-1 flex flex-col items-center gap-1">
                 <div className="text-xs font-data font-bold" style={{ color: item.color }}>
                   #{item.rank}
@@ -248,9 +251,9 @@ export default function RoadmapSection() {
               </div>
             ))}
           </div>
-          <div className="flex gap-2">
-            {["Now", "Wk 1–2", "Wk 3–4", "Mo 2", "Mo 3", "Mo 4+", "Ongoing"].map((m) => (
-              <div key={m} className="flex-1 text-center text-xs font-data text-muted-foreground">{m}</div>
+          <div className="flex gap-4">
+            {trajectoryData.map((item) => (
+              <div key={item.month} className="flex-1 text-center text-xs font-data text-muted-foreground">{item.month}</div>
             ))}
           </div>
           <p className="text-xs text-muted-foreground text-center mt-4">
