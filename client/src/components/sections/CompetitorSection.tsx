@@ -1,7 +1,7 @@
 /**
  * DESIGN: Dark Intelligence / Command Center
- * Competitor analysis with heatmaps and detailed breakdowns
- * All competitor data sourced from PROSPECT.competitors — do NOT hardcode
+ * Competitor analysis — fully data-driven from PROSPECT.competitors in prospect-data.ts
+ * No hardcoded competitor names, zones, or images. All content comes from prospect-data.ts.
  */
 
 import { useState } from "react";
@@ -12,33 +12,35 @@ const COMP_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663369686965/C44GwV
 
 type Strength = "strong" | "moderate" | "weak" | "none";
 
+/** Convert a 0–100 numeric score to a strength label */
 function scoreToStrength(score: number): Strength {
   if (score >= 70) return "strong";
-  if (score >= 45) return "moderate";
-  if (score >= 20) return "weak";
+  if (score >= 40) return "moderate";
+  if (score >= 10) return "weak";
   return "none";
 }
 
-function rankToThreat(rank: number): "high" | "medium" | "low" {
-  if (rank === 1) return "high";
-  if (rank === 2) return "medium";
+/** Derive threat level from overall SEO scores */
+function deriveThreatLevel(scores: {
+  gbpOptimization: number;
+  topicalRelevance: number;
+  websiteAuthority: number;
+  internalLinking: number;
+  reviewVelocity: number;
+  localCitations: number;
+}): "high" | "medium" | "low" {
+  const avg = (scores.gbpOptimization + scores.topicalRelevance + scores.websiteAuthority +
+    scores.internalLinking + scores.reviewVelocity + scores.localCitations) / 6;
+  if (avg >= 50) return "high";
+  if (avg >= 30) return "medium";
   return "low";
 }
 
-// Derive best rank label from greenPct
-function bestRankLabel(greenPct: number, yellowPct: number): string {
-  if (greenPct >= 30) return "#1–3";
-  if (greenPct >= 15) return "#1–5";
-  if (yellowPct >= 40) return "#4–10";
-  return "#8–15";
-}
-
-// Derive dominance zone from competitor name / data
-function getDominanceZone(name: string): string {
-  if (name.toLowerCase().includes("scott")) return "East & Central Omaha";
-  if (name.toLowerCase().includes("certa")) return "Central Omaha";
-  if (name.toLowerCase().includes("five star") || name.toLowerCase().includes("sarpy")) return "Sarpy County";
-  return "Omaha Metro";
+/** Derive best rank label from greenPct/yellowPct */
+function deriveBestRank(greenPct: number, yellowPct: number): string {
+  if (greenPct >= 20) return "#1–3";
+  if (yellowPct >= 20) return "#4–10";
+  return "#11–20";
 }
 
 const strengthLabels: Record<Strength, { label: string; color: string; icon: React.ComponentType<{ size?: number; className?: string }> }> = {
@@ -66,20 +68,15 @@ function StrengthBadge({ value }: { value: Strength }) {
 }
 
 export default function CompetitorSection() {
-  const [activeComp, setActiveComp] = useState(PROSPECT.competitors[0]?.name ?? "");
+  const [activeIdx, setActiveIdx] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  const comp = PROSPECT.competitors.find(c => c.name === activeComp) ?? PROSPECT.competitors[0];
+  const comp = PROSPECT.competitors[activeIdx];
   if (!comp) return null;
 
-  const threatLevel = rankToThreat(comp.rank);
+  const threatLevel = deriveThreatLevel(comp.scores);
   const threat = threatColors[threatLevel];
-  const topicalStrength = scoreToStrength(comp.scores.topicalRelevance);
-  const linkingStrength = scoreToStrength(comp.scores.internalLinking);
-  const websiteStrength = scoreToStrength(comp.scores.websiteAuthority);
-  const gbpStrength = scoreToStrength(comp.scores.gbpOptimization);
-  const avgRankBest = bestRankLabel(comp.greenPct, comp.yellowPct);
-  const dominanceZone = getDominanceZone(comp.name);
+  const bestRank = deriveBestRank(comp.greenPct, comp.yellowPct);
 
   return (
     <div className="py-20 px-8 relative overflow-hidden">
@@ -100,35 +97,35 @@ export default function CompetitorSection() {
             Competitor Analysis
           </h2>
           <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-            Your top 3 competitors for the <strong className="text-yellow-400">"{PROSPECT.heatmaps[0]?.keyword}"</strong> category in {PROSPECT.cityState}. Understanding their strengths and
+            Your top {PROSPECT.competitors.length} competitors for the <strong className="text-yellow-400">"{PROSPECT.heatmaps[0]?.keyword}"</strong> category in {PROSPECT.cityState}. Understanding their strengths and
             weaknesses reveals exactly where <strong className="text-white font-semibold">{PROSPECT.name}</strong> can break through.
           </p>
         </div>
 
         {/* Competitor tabs */}
         <div className="flex gap-3 mb-8 flex-wrap">
-          {PROSPECT.competitors.map((c) => {
-            const tl = rankToThreat(c.rank);
+          {PROSPECT.competitors.map((c, idx) => {
+            const tl = deriveThreatLevel(c.scores);
             const t = threatColors[tl];
             return (
               <button
-                key={c.name}
-                onClick={() => setActiveComp(c.name)}
+                key={idx}
+                onClick={() => setActiveIdx(idx)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl border text-left transition-all duration-200
-                  ${activeComp === c.name
+                  ${activeIdx === idx
                     ? `${t.bg} ${t.border} ${t.text}`
                     : "bg-card border-border text-muted-foreground hover:border-primary/30 hover:text-foreground"
                   }`}
               >
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold font-data
-                  ${activeComp === c.name ? t.text : "text-muted-foreground"}`}
-                  style={{ background: activeComp === c.name ? undefined : "rgba(255,255,255,0.05)" }}
+                  ${activeIdx === idx ? t.text : "text-muted-foreground"}`}
+                  style={{ background: activeIdx === idx ? undefined : "rgba(255,255,255,0.05)" }}
                 >
                   #{c.rank}
                 </div>
                 <div>
                   <div className="text-sm font-medium" style={{ fontFamily: 'Outfit, sans-serif' }}>{c.name}</div>
-                  <div className={`text-xs font-data ${activeComp === c.name ? t.text : "text-muted-foreground"} opacity-70`}>
+                  <div className={`text-xs font-data ${activeIdx === idx ? t.text : "text-muted-foreground"} opacity-70`}>
                     {t.label}
                   </div>
                 </div>
@@ -161,7 +158,7 @@ export default function CompetitorSection() {
                 className="w-full h-auto block transition-transform duration-300 group-hover:scale-[1.01]"
               />
               <div className={`absolute bottom-4 right-4 px-3 py-1.5 rounded-lg text-white text-xs font-data font-bold ${threat.bg} border ${threat.border}`}>
-                BEST RANK: {avgRankBest}
+                BEST RANK: {bestRank}
               </div>
             </div>
           </div>
@@ -182,10 +179,10 @@ export default function CompetitorSection() {
               <div className="text-xs font-data text-muted-foreground uppercase tracking-wider mb-3">SEO Factor Analysis</div>
               <div className="space-y-2.5">
                 {[
-                  { label: "Topical Relevance", value: topicalStrength },
-                  { label: "Internal Linking", value: linkingStrength },
-                  { label: "Website Authority", value: websiteStrength },
-                  { label: "GBP Optimization", value: gbpStrength },
+                  { label: "Topical Relevance", value: scoreToStrength(comp.scores.topicalRelevance) },
+                  { label: "Internal Linking", value: scoreToStrength(comp.scores.internalLinking) },
+                  { label: "Website Authority", value: scoreToStrength(comp.scores.websiteAuthority) },
+                  { label: "GBP Optimization", value: scoreToStrength(comp.scores.gbpOptimization) },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between">
                     <span className="text-xs text-muted-foreground">{item.label}</span>
@@ -195,19 +192,21 @@ export default function CompetitorSection() {
               </div>
             </div>
 
-            {/* Dominance zone */}
+            {/* Dominance zone — uses dominanceZone from prospect-data.ts */}
             <div className="p-4 rounded-xl bg-card border border-border">
               <div className="flex items-center gap-2 mb-2">
                 <MapPin size={12} className="text-primary" />
                 <span className="text-xs font-data text-primary uppercase tracking-wider">Dominance Zone</span>
               </div>
-              <div className="text-sm text-foreground font-medium mb-1">{dominanceZone}</div>
-              <div className="text-xs text-muted-foreground">{comp.opportunity.split(".")[0]}.</div>
+              <div className="text-sm text-foreground font-medium mb-1">
+                {(comp as any).dominanceZone ?? `${PROSPECT.city} Area`}
+              </div>
+              <div className="text-xs text-muted-foreground">{comp.strengths[0]}</div>
             </div>
 
-            {/* Summary */}
+            {/* Opportunity */}
             <div className="p-4 rounded-xl bg-card border border-border flex-1">
-              <div className="text-xs font-data text-muted-foreground uppercase tracking-wider mb-2">Strategic Summary</div>
+              <div className="text-xs font-data text-muted-foreground uppercase tracking-wider mb-2">Your Opportunity</div>
               <p className="text-xs text-muted-foreground leading-relaxed">{comp.opportunity}</p>
             </div>
           </div>
@@ -265,16 +264,20 @@ export default function CompetitorSection() {
                 </tr>
               </thead>
               <tbody>
-                {PROSPECT.competitors.map((c) => {
-                  const tl = rankToThreat(c.rank);
+                {PROSPECT.competitors.map((c, idx) => {
+                  const tl = deriveThreatLevel(c.scores);
                   const t = threatColors[tl];
                   return (
-                    <tr key={c.name} className="border-b border-border hover:bg-white/2 transition-colors">
+                    <tr key={idx} className="border-b border-border hover:bg-white/2 transition-colors">
                       <td className="px-6 py-4">
                         <div className="font-medium text-foreground">{c.name}</div>
-                        <div className="text-xs text-muted-foreground">{getDominanceZone(c.name)}</div>
+                        <div className="text-xs text-muted-foreground">
+                          {(c as any).dominanceZone ?? `${PROSPECT.city} Area`}
+                        </div>
                       </td>
-                      <td className="px-4 py-4 text-center font-data text-green-400 font-bold">{bestRankLabel(c.greenPct, c.yellowPct)}</td>
+                      <td className="px-4 py-4 text-center font-data text-green-400 font-bold">
+                        {deriveBestRank(c.greenPct, c.yellowPct)}
+                      </td>
                       <td className="px-4 py-4 text-center"><StrengthBadge value={scoreToStrength(c.scores.topicalRelevance)} /></td>
                       <td className="px-4 py-4 text-center"><StrengthBadge value={scoreToStrength(c.scores.internalLinking)} /></td>
                       <td className="px-4 py-4 text-center"><StrengthBadge value={scoreToStrength(c.scores.websiteAuthority)} /></td>

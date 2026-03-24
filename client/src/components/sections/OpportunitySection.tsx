@@ -107,7 +107,7 @@ export default function OpportunitySection() {
         "Specialty & niche service pages",
         "FAQ & resource pages",
       ],
-      effort: "High (6–12 weeks)",
+      effort: "High",
       timeline: "Month 1–3",
     },
     {

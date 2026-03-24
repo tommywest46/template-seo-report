@@ -88,11 +88,13 @@ export const PROSPECT = {
         "Weakness 2 of competitor 1",
         "Weakness 3 of competitor 1",
       ],
-      opportunity: "Describe the specific opportunity to outrank this competitor.",
-      greenPct: 35,   // % of grid points ranked #1-3
-      yellowPct: 30,  // % ranked #4-10
-      orangePct: 20,  // % ranked #11-19
-      redPct: 15,     // % ranked 20+
+      opportunity: "Beatable with a comprehensive content strategy and strong GBP optimization. Their east-side weakness is your entry point.",
+      dominanceZone: "West Omaha",       // Area where this competitor ranks strongest
+      // Heatmap color summary for the comparison bar
+      greenPct: 45,   // % of grid points ranked #1-3
+      yellowPct: 20,  // % ranked #4-10
+      orangePct: 15,  // % ranked #11-19
+      redPct: 20,     // % ranked 20+
     },
     {
       rank: 2,
@@ -117,7 +119,8 @@ export const PROSPECT = {
         "Weakness 2 of competitor 2",
         "Weakness 3 of competitor 2",
       ],
-      opportunity: "Describe the specific opportunity to outrank this competitor.",
+      opportunity: "Outranks in central Omaha but has no content moat. A topical authority strategy will leapfrog them within 60–90 days.",
+      dominanceZone: "Central Omaha",
       greenPct: 20,
       yellowPct: 45,
       orangePct: 20,
@@ -146,11 +149,12 @@ export const PROSPECT = {
         "Weakness 2 of competitor 3",
         "Weakness 3 of competitor 3",
       ],
-      opportunity: "Describe the specific opportunity to outrank this competitor.",
-      greenPct: 15,
-      yellowPct: 50,
-      orangePct: 20,
-      redPct: 15,
+      opportunity: "The easiest competitor to beat. Without a website, she cannot build topical authority. A single well-built site will outrank her across the metro.",
+      dominanceZone: "SW Omaha / Chalco",
+      greenPct: 10,
+      yellowPct: 40,
+      orangePct: 30,
+      redPct: 20,
     },
   ],
 
